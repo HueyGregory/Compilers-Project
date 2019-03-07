@@ -2,10 +2,11 @@ grammar GoobScraper;
 
 program: statment + EOF;
 
-statment: '/get' 'url' (word)+ #
-        | '/get'(word)+ #GetStatment
-        ;
+statment: keyword ('url')? (word)+ #GetStatment
+        |
+;
 
+keyword : '/' ('get' | 'extract' | 'update');
 word : (ID | NUMBER)+ ;
 
 ID     : [a-z]+ ;
