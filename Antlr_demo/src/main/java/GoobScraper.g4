@@ -1,8 +1,9 @@
 grammar GoobScraper;
 
-program: statment + EOF;
+program: statment+;
 
-statment: '/get' 'url'? (word)+ #GetStatment
+statment: '/get' 'url'? (word)+ #GetURLStatment
+        | '/get' (word)+ #GetStatment
         | '/extract' ('append' | 'merge')? (word)+ #ExtractStatment
         | '/update' word? time  #UpdateStatment
         ;
