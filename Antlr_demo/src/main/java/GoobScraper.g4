@@ -8,18 +8,10 @@ statment: '/get' (word) ';' #GetStatment
         | '/update' word? time ';'  #UpdateStatment
         ;
 
-time: NUMBER TIMES;
+time: NUMBER ('sec' | 'min' | 'hrs' | 'day' | 'mon');
 word : (ID | NUMBER | STRING) ;
 
 STRING : '"' (~[\r\n"] | '""')* '"';
 ID     : [A-Za-z]+ ;
 NUMBER : [0-9]+ ;
 WS     : [ \n\t\r]+ -> skip;
-
-
-TIMES  : SECONDS | MINUTES | HOURS | DAYS | MONTHS;
-SECONDS: 's' | 'sec' | 'second' | 'seconds';
-MINUTES: 'min' | 'minute' | 'minutes';
-HOURS  : 'h' | 'hr' | 'hrs' | 'hour' | 'hours';
-DAYS   : 'd' | 'day' | 'days';
-MONTHS : 'mon' | 'month' | 'months';
