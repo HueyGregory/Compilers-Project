@@ -2,8 +2,8 @@ grammar GoobScraper;
 
 program: statment+;
 
-statment: '/get' 'url'? (word)+ #GetURLStatment
-        | '/get' (word)+ #GetStatment
+statment: '/get' (word)+ #GetStatment
+        | '/get' 'url'? (word)+ #GetURLStatment
         | '/extract' ('append' | 'merge')? (word)+ #ExtractStatment
         | '/update' word? time  #UpdateStatment
         ;
