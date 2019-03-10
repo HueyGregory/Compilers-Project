@@ -3,7 +3,7 @@ grammar GoobScraper;
 program: statment + EOF;
 
 statment: '/get' 'url'? (word)+ #GetStatment
-        | '/extract' (word)+ #ExtractStatment
+        | '/extract' ('append' | 'merge')? (word)+ #ExtractStatment
         | '/update' word? time  #UpdateStatment
         ;
 
