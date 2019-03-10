@@ -4,6 +4,11 @@
     <list default="true" id="f34780e5-ae09-43cd-b776-8809551f72a5" name="Default" comment="more stuff added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GoobScraper.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GoobScraper.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GYOOParser$AddContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GYOOParser$AssignContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GYOOParser$PrintContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GYOOParser$ProgramContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GYOOParser$StatementContext.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+            <state relative-caret-position="119">
+              <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -91,11 +96,6 @@
             <path>
               <item name="antlr4" type="b2602c69:ProjectViewProjectNode" />
               <item name="Antlr_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="gen" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="antlr4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Antlr_demo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -121,7 +121,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552245069437" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552245958697" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -194,7 +194,7 @@
       <workItem from="1551998849357" duration="892000" />
       <workItem from="1552000047478" duration="24000" />
       <workItem from="1552001719768" duration="5656000" />
-      <workItem from="1552197217238" duration="2738000" />
+      <workItem from="1552197217238" duration="3627000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff added">
       <created>1552014244390</created>
@@ -238,11 +238,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552245002351</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="more stuff added">
+      <created>1552245083438</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1552245083438</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12332000" />
+    <option name="totallyTimeSpent" value="13221000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -255,7 +262,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.22768533" />
       <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.22768533" />
@@ -327,8 +333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        <state relative-caret-position="119">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
         </state>
       </provider>
     </entry>
