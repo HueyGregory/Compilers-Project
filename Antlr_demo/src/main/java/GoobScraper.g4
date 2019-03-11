@@ -3,9 +3,9 @@ grammar GoobScraper;
 program: statment+;
 
 statment: '/get' (word) ';' #GetStatment
-        | '/get' 'url'? (word) ';' #GetURLStatment
-        | '/extract' ('append' | 'merge')? (word) ';' #ExtractStatment
-        | '/update' word? time ';'  #UpdateStatment
+        | '/get' 'url' (word) ';' #GetURLStatment
+        | '/extract' ('append' | 'merge' | 'replace')? (word) ';' #ExtractStatment
+        | '/update' ('append' | 'merge' | 'replace') word? time ';'  #UpdateStatment
         ;
 
 time: NUMBER ('sec' | 'min' | 'hrs' | 'day' | 'mon');
