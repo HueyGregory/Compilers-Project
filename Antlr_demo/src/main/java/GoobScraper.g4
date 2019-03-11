@@ -4,8 +4,10 @@ program: statment+;
 
 statment: '/get' (word) ';' #GetStatment
         | '/get' 'url' (word) ';' #GetURLStatment
+        | '/get' ('tables' | 'table') (word)? ';' #GetTableStatment
         | '/extract' ('append' | 'merge' | 'replace')? (word) ';' #ExtractStatment
         | '/update' ('append' | 'merge' | 'replace') word? time ';'  #UpdateStatment
+        | '/alert' word time ';' #AlertStatment
         ;
 
 time: NUMBER ('sec' | 'min' | 'hrs' | 'day' | 'mon');
