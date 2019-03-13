@@ -31,7 +31,7 @@ alert : word    #AlertWord
 time : NUMBER ('sec' | 'min' | 'hrs' | 'day' | 'mon');
 word : (ID | NUMBER | STRING) ;
 
-STRING : '"' (~[\r\n"] | '""')* '"';
+STRING : '"' (~[\r\n"] | '"')* '"';
 ID     : [A-Za-z]+ ;
 NUMBER : [0-9]+ ;
 WS     : [ \n\t\r]+ -> skip;
