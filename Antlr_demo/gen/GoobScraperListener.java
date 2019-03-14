@@ -1,4 +1,4 @@
-// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
+// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -219,13 +219,39 @@ public interface GoobScraperListener extends ParseTreeListener {
 	 */
 	void exitTime(GoobScraperParser.TimeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GoobScraperParser#word}.
+	 * Enter a parse tree produced by the {@code WordID}
+	 * labeled alternative in {@link GoobScraperParser#word}.
 	 * @param ctx the parse tree
 	 */
-	void enterWord(GoobScraperParser.WordContext ctx);
+	void enterWordID(GoobScraperParser.WordIDContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GoobScraperParser#word}.
+	 * Exit a parse tree produced by the {@code WordID}
+	 * labeled alternative in {@link GoobScraperParser#word}.
 	 * @param ctx the parse tree
 	 */
-	void exitWord(GoobScraperParser.WordContext ctx);
+	void exitWordID(GoobScraperParser.WordIDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code WordNumber}
+	 * labeled alternative in {@link GoobScraperParser#word}.
+	 * @param ctx the parse tree
+	 */
+	void enterWordNumber(GoobScraperParser.WordNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code WordNumber}
+	 * labeled alternative in {@link GoobScraperParser#word}.
+	 * @param ctx the parse tree
+	 */
+	void exitWordNumber(GoobScraperParser.WordNumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code WordString}
+	 * labeled alternative in {@link GoobScraperParser#word}.
+	 * @param ctx the parse tree
+	 */
+	void enterWordString(GoobScraperParser.WordStringContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code WordString}
+	 * labeled alternative in {@link GoobScraperParser#word}.
+	 * @param ctx the parse tree
+	 */
+	void exitWordString(GoobScraperParser.WordStringContext ctx);
 }

@@ -1,4 +1,4 @@
-// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
+// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -856,24 +856,64 @@ public class GoobScraperParser extends Parser {
 	}
 
 	public static class WordContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(GoobScraperParser.ID, 0); }
-		public TerminalNode NUMBER() { return getToken(GoobScraperParser.NUMBER, 0); }
-		public TerminalNode STRING() { return getToken(GoobScraperParser.STRING, 0); }
 		public WordContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_word; }
+	 
+		public WordContext() { }
+		public void copyFrom(WordContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class WordIDContext extends WordContext {
+		public TerminalNode ID() { return getToken(GoobScraperParser.ID, 0); }
+		public WordIDContext(WordContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).enterWord(this);
+			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).enterWordID(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).exitWord(this);
+			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).exitWordID(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GoobScraperVisitor ) return ((GoobScraperVisitor<? extends T>)visitor).visitWord(this);
+			if ( visitor instanceof GoobScraperVisitor ) return ((GoobScraperVisitor<? extends T>)visitor).visitWordID(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class WordNumberContext extends WordContext {
+		public TerminalNode NUMBER() { return getToken(GoobScraperParser.NUMBER, 0); }
+		public WordNumberContext(WordContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).enterWordNumber(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).exitWordNumber(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof GoobScraperVisitor ) return ((GoobScraperVisitor<? extends T>)visitor).visitWordNumber(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class WordStringContext extends WordContext {
+		public TerminalNode STRING() { return getToken(GoobScraperParser.STRING, 0); }
+		public WordStringContext(WordContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).enterWordString(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GoobScraperListener ) ((GoobScraperListener)listener).exitWordString(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof GoobScraperVisitor ) return ((GoobScraperVisitor<? extends T>)visitor).visitWordString(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -881,20 +921,36 @@ public class GoobScraperParser extends Parser {
 	public final WordContext word() throws RecognitionException {
 		WordContext _localctx = new WordContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_word);
-		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(72);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << ID) | (1L << NUMBER))) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(75);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case ID:
+				_localctx = new WordIDContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(72);
+				match(ID);
+				}
+				break;
+			case NUMBER:
+				_localctx = new WordNumberContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(73);
+				match(NUMBER);
+				}
+				break;
+			case STRING:
+				_localctx = new WordStringContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(74);
+				match(STRING);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -909,26 +965,27 @@ public class GoobScraperParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26M\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26P\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\3\2\6\2\24\n\2\r\2"+
 		"\16\2\25\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3$\n\3\3\3"+
 		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3.\n\3\3\4\3\4\3\4\3\4\3\4\5\4\65\n\4\5"+
 		"\4\67\n\4\3\5\3\5\3\5\3\5\5\5=\n\5\3\6\3\6\3\6\5\6B\n\6\3\7\3\7\5\7F\n"+
-		"\7\3\b\3\b\3\b\3\t\3\t\3\t\2\2\n\2\4\6\b\n\f\16\20\2\5\3\2\t\n\3\2\16"+
-		"\22\3\2\23\25\2R\2\23\3\2\2\2\4-\3\2\2\2\6\66\3\2\2\2\b<\3\2\2\2\nA\3"+
-		"\2\2\2\fE\3\2\2\2\16G\3\2\2\2\20J\3\2\2\2\22\24\5\4\3\2\23\22\3\2\2\2"+
-		"\24\25\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\3\3\2\2\2\27\30\7\3\2\2"+
-		"\30\31\5\6\4\2\31\32\7\4\2\2\32.\3\2\2\2\33\34\7\5\2\2\34\35\5\b\5\2\35"+
-		"\36\5\20\t\2\36\37\7\4\2\2\37.\3\2\2\2 !\7\6\2\2!#\5\n\6\2\"$\5\20\t\2"+
-		"#\"\3\2\2\2#$\3\2\2\2$%\3\2\2\2%&\5\16\b\2&\'\7\4\2\2\'.\3\2\2\2()\7\7"+
-		"\2\2)*\5\f\7\2*+\5\16\b\2+,\7\4\2\2,.\3\2\2\2-\27\3\2\2\2-\33\3\2\2\2"+
-		"- \3\2\2\2-(\3\2\2\2.\5\3\2\2\2/\67\5\20\t\2\60\61\7\b\2\2\61\67\5\20"+
-		"\t\2\62\64\t\2\2\2\63\65\5\20\t\2\64\63\3\2\2\2\64\65\3\2\2\2\65\67\3"+
-		"\2\2\2\66/\3\2\2\2\66\60\3\2\2\2\66\62\3\2\2\2\67\7\3\2\2\28=\7\13\2\2"+
-		"9=\7\f\2\2:=\7\r\2\2;=\3\2\2\2<8\3\2\2\2<9\3\2\2\2<:\3\2\2\2<;\3\2\2\2"+
-		"=\t\3\2\2\2>B\7\13\2\2?B\7\f\2\2@B\7\r\2\2A>\3\2\2\2A?\3\2\2\2A@\3\2\2"+
-		"\2B\13\3\2\2\2CF\5\20\t\2DF\3\2\2\2EC\3\2\2\2ED\3\2\2\2F\r\3\2\2\2GH\7"+
-		"\25\2\2HI\t\3\2\2I\17\3\2\2\2JK\t\4\2\2K\21\3\2\2\2\n\25#-\64\66<AE";
+		"\7\3\b\3\b\3\b\3\t\3\t\3\t\5\tN\n\t\3\t\2\2\n\2\4\6\b\n\f\16\20\2\4\3"+
+		"\2\t\n\3\2\16\22\2W\2\23\3\2\2\2\4-\3\2\2\2\6\66\3\2\2\2\b<\3\2\2\2\n"+
+		"A\3\2\2\2\fE\3\2\2\2\16G\3\2\2\2\20M\3\2\2\2\22\24\5\4\3\2\23\22\3\2\2"+
+		"\2\24\25\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\3\3\2\2\2\27\30\7\3\2"+
+		"\2\30\31\5\6\4\2\31\32\7\4\2\2\32.\3\2\2\2\33\34\7\5\2\2\34\35\5\b\5\2"+
+		"\35\36\5\20\t\2\36\37\7\4\2\2\37.\3\2\2\2 !\7\6\2\2!#\5\n\6\2\"$\5\20"+
+		"\t\2#\"\3\2\2\2#$\3\2\2\2$%\3\2\2\2%&\5\16\b\2&\'\7\4\2\2\'.\3\2\2\2("+
+		")\7\7\2\2)*\5\f\7\2*+\5\16\b\2+,\7\4\2\2,.\3\2\2\2-\27\3\2\2\2-\33\3\2"+
+		"\2\2- \3\2\2\2-(\3\2\2\2.\5\3\2\2\2/\67\5\20\t\2\60\61\7\b\2\2\61\67\5"+
+		"\20\t\2\62\64\t\2\2\2\63\65\5\20\t\2\64\63\3\2\2\2\64\65\3\2\2\2\65\67"+
+		"\3\2\2\2\66/\3\2\2\2\66\60\3\2\2\2\66\62\3\2\2\2\67\7\3\2\2\28=\7\13\2"+
+		"\29=\7\f\2\2:=\7\r\2\2;=\3\2\2\2<8\3\2\2\2<9\3\2\2\2<:\3\2\2\2<;\3\2\2"+
+		"\2=\t\3\2\2\2>B\7\13\2\2?B\7\f\2\2@B\7\r\2\2A>\3\2\2\2A?\3\2\2\2A@\3\2"+
+		"\2\2B\13\3\2\2\2CF\5\20\t\2DF\3\2\2\2EC\3\2\2\2ED\3\2\2\2F\r\3\2\2\2G"+
+		"H\7\25\2\2HI\t\3\2\2I\17\3\2\2\2JN\7\24\2\2KN\7\25\2\2LN\7\23\2\2MJ\3"+
+		"\2\2\2MK\3\2\2\2ML\3\2\2\2N\21\3\2\2\2\13\25#-\64\66<AEM";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

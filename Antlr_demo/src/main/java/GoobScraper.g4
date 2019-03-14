@@ -29,7 +29,11 @@ alert : word    #AlertWord
       ;
 
 time : NUMBER ('sec' | 'min' | 'hrs' | 'day' | 'mon');
-word : (ID | NUMBER | STRING) ;
+
+word : ID    #WordID
+    | NUMBER #WordNumber
+    | STRING #WordString
+    ;
 
 STRING : '"' (~[\r\n"] | '"')* '"';
 ID     : [A-Za-z]+ ;

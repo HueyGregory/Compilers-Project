@@ -1,4 +1,4 @@
-// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
+// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -231,13 +231,37 @@ public class GoobScraperBaseListener implements GoobScraperListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterWord(GoobScraperParser.WordContext ctx) { }
+	@Override public void enterWordID(GoobScraperParser.WordIDContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitWord(GoobScraperParser.WordContext ctx) { }
+	@Override public void exitWordID(GoobScraperParser.WordIDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWordNumber(GoobScraperParser.WordNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWordNumber(GoobScraperParser.WordNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWordString(GoobScraperParser.WordStringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWordString(GoobScraperParser.WordStringContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

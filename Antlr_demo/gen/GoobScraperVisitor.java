@@ -1,4 +1,4 @@
-// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
+// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -134,9 +134,24 @@ public interface GoobScraperVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTime(GoobScraperParser.TimeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GoobScraperParser#word}.
+	 * Visit a parse tree produced by the {@code WordID}
+	 * labeled alternative in {@link GoobScraperParser#word}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWord(GoobScraperParser.WordContext ctx);
+	T visitWordID(GoobScraperParser.WordIDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WordNumber}
+	 * labeled alternative in {@link GoobScraperParser#word}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWordNumber(GoobScraperParser.WordNumberContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WordString}
+	 * labeled alternative in {@link GoobScraperParser#word}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWordString(GoobScraperParser.WordStringContext ctx);
 }
