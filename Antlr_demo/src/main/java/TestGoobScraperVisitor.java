@@ -37,7 +37,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
         //https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis
         URLConnection connection = null;
         try {
-            String url = ctx.word().getText();
+            String url = ctx.word().getText().replace("\"","");
             connection = new URL(url).openConnection();
             InputStream response = connection.getInputStream();
             Scanner scanner = new Scanner(response);
