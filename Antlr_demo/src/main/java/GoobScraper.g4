@@ -35,7 +35,7 @@ word : ID    #WordID
     | STRING #WordString
     ;
 
-STRING : '"' (~[\r\n"] | '"')* '"';
+STRING : '"' (~[\r\n"])* '"';
 ID     : [A-Za-z]+ ;
 NUMBER : [0-9]+ ;
 WS     : [ \n\t\r]+ -> skip;

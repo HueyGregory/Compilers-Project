@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.*;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
@@ -26,6 +29,23 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
     @Override
     public Void visitWordString(GoobScraperParser.WordStringContext ctx) {
         String string = ctx.STRING().getText();
+        return null;
+    }
+
+    @Override
+    public Void visitGetURL(GoobScraperParser.GetURLContext ctx) {
+        //https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis
+        URLConnection connection = null;
+        try {
+            String url = ctx.word().getText();
+            connection = new URL(url).openConnection();
+            InputStream response = connection.getInputStream();
+            Scanner scanner = new Scanner(response);
+            String responseBody = scanner.useDelimiter("\\A").next();
+            System.out.println(responseBody);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
