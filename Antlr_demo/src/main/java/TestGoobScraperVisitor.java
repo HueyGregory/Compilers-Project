@@ -32,8 +32,21 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
         return null;
     }
 
+
     @Override
-    public Void visitGetURL(GoobScraperParser.GetURLContext ctx) {
+    public Void visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
+        //String string = ctx.
+        return null;
+    }
+
+    @Override
+    public Void visitExtractAppend(GoobScraperParser.ExtractAppendContext ctx) {
+        //String string = ctx
+        return null;
+    }
+
+    @Override
+    public Variable visitGetURL(GoobScraperParser.GetURLContext ctx) {
         //https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis
         URLConnection connection = null;
         try {
@@ -43,6 +56,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
             Scanner scanner = new Scanner(response);
             String responseBody = scanner.useDelimiter("\\A").next();
             System.out.println(responseBody);
+            return Variable.variableFactory(responseBody);
         } catch (IOException e) {
             e.printStackTrace();
         }

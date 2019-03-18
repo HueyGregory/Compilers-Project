@@ -3,7 +3,7 @@ grammar GoobScraper;
 program: statment+;
 
 statment: '/get' get ';'                   #GetStatment
-        | '/extract' extract (word) ';'    #ExtractStatment
+        | '/extract' extract ';'    #ExtractStatment
         | '/update' update word? time ';'  #UpdateStatment
         | '/alert' alert time ';'          #AlertStatment
         ;
@@ -13,10 +13,10 @@ get : (word)                       #RegularGet
     | ('tables' | 'table') (word)? #GetTable
     ;
 
-extract : 'append'   #ExtractAppend
-        | 'merge'    #ExtractMerge
-        | 'replace'  #ExtractReplace
-        |            #ExtractEmpty
+extract : 'append' (word)? (word)   #ExtractAppend
+        | 'merge' (word)? (word)    #ExtractMerge
+        | 'replace' (word)? (word)  #ExtractReplace
+        |  'new'  (word)? (word)    #ExtractNew
         ;
 
 update : 'append'   #UpdateAppend
