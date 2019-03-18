@@ -12,9 +12,19 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
     }
 
     @Override
-    public Void visitWord(GoobScraperParser.WordContext ctx) {
+    public Void visitWordID(GoobScraperParser.WordIDContext ctx) {
         String id = ctx.ID().getText();
+        return null;
+    }
+
+    @Override
+    public Void visitWordNumber(GoobScraperParser.WordNumberContext ctx) {
         String number = ctx.NUMBER().getText();
+        return null;
+    }
+
+    @Override
+    public Void visitWordString(GoobScraperParser.WordStringContext ctx) {
         String string = ctx.STRING().getText();
         return null;
     }
