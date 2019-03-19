@@ -8,6 +8,20 @@ import org.antlr.v4.runtime.tree.*;
 
 public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
     //Map<String,String> props = new HashMap<>();​
+
+    @Override public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
+        String updateType = ctx.update().getText();
+        System.out.println(updateType);
+        return null;
+    }
+
+
+    public Variable visitUpdateAppend(String file, int time) {
+
+        return null;
+    }
+
+
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
         return visitChildren(ctx);
@@ -42,6 +56,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
             var = ctx.getChild(1).getText();
             file = ctx.getChild(2).getText();
         }
+
         return null;
     }
 

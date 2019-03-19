@@ -86,12 +86,12 @@ public interface GoobScraperVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExtractReplace(GoobScraperParser.ExtractReplaceContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ExtractEmpty}
+	 * Visit a parse tree produced by the {@code ExtractNew}
 	 * labeled alternative in {@link GoobScraperParser#extract}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExtractEmpty(GoobScraperParser.ExtractEmptyContext ctx);
+	T visitExtractNew(GoobScraperParser.ExtractNewContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code UpdateAppend}
 	 * labeled alternative in {@link GoobScraperParser#update}.
