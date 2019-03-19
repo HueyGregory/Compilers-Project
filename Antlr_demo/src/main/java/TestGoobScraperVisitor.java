@@ -8,18 +8,21 @@ import org.antlr.v4.runtime.tree.*;
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     private Map<String,Variable> varMem = new HashMap<>();
 
-public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
-    //Map<String,String> props = new HashMap<>();​
 
-    @Override public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
+    @Override
+    public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
+        String file = ctx.word().getText();
+        int time = Integer.getInteger(ctx.time().NUMBER().getText());
         String updateType = ctx.update().getText();
-        System.out.println(updateType);
+        if (updateType.equals("append")) {
+   //         visitUpdateAppend(file, time);
+        }
+        System.out.println("updateType: " + time);
         return null;
     }
 
-
     public Variable visitUpdateAppend(String file, int time) {
-
+        System.out.println("updateAppendType: ");
         return null;
     }
 
