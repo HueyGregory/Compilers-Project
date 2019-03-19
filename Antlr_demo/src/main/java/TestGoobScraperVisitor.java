@@ -6,7 +6,8 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
-    //Map<String,String> props = new HashMap<>();​
+    private Map<String,Variable> varMem = new HashMap<>();
+
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
         return visitChildren(ctx);
@@ -32,7 +33,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
     /**
      * Extracts the data to a new file creating the file in process
-     * ex. /extract new (variable)? file.extension;
+     * ex. /extract new (variable)? file.extension;/r -> <EOF> -> <ctrl-D>
      * @param ctx
      * @return
      */
@@ -48,7 +49,6 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         }
         try {
             FileWriter writer = new FileWriter(file.replace("\"",""));
-            writer.append("var");
         } catch (IOException e) {
             e.printStackTrace();
         }
