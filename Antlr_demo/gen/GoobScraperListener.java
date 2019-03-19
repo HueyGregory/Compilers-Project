@@ -1,4 +1,4 @@
-// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
+// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -137,17 +137,17 @@ public interface GoobScraperListener extends ParseTreeListener {
 	 */
 	void exitExtractReplace(GoobScraperParser.ExtractReplaceContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ExtractEmpty}
+	 * Enter a parse tree produced by the {@code ExtractNew}
 	 * labeled alternative in {@link GoobScraperParser#extract}.
 	 * @param ctx the parse tree
 	 */
-	void enterExtractEmpty(GoobScraperParser.ExtractEmptyContext ctx);
+	void enterExtractNew(GoobScraperParser.ExtractNewContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ExtractEmpty}
+	 * Exit a parse tree produced by the {@code ExtractNew}
 	 * labeled alternative in {@link GoobScraperParser#extract}.
 	 * @param ctx the parse tree
 	 */
-	void exitExtractEmpty(GoobScraperParser.ExtractEmptyContext ctx);
+	void exitExtractNew(GoobScraperParser.ExtractNewContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code UpdateAppend}
 	 * labeled alternative in {@link GoobScraperParser#update}.

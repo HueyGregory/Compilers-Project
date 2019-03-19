@@ -1,12 +1,11 @@
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
-public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
+public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     //Map<String,String> props = new HashMap<>();​
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
@@ -31,9 +30,14 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
         return null;
     }
 
-
+    /**
+     * Extracts the data to a new file creating the file in process
+     * ex. /extract new (variable)? file.extension;
+     * @param ctx
+     * @return
+     */
     @Override
-    public Void visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
+    public Variable visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
         String file = "",var = "";
         int wordNum = ctx.word().size();
         if(wordNum == 1){
@@ -41,6 +45,12 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
         }else if(wordNum == 2){
             var = ctx.getChild(1).getText();
             file = ctx.getChild(2).getText();
+        }
+        try {
+            FileWriter writer = new FileWriter(file.replace("\"",""));
+            writer.append("var");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -70,7 +80,9 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor {
     }
 
     public static void main(String[] args) throws IOException {
-        ANTLRInputStream input = new ANTLRInputStream(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("~$: ");
+        ANTLRInputStream input = new ANTLRInputStream(br);
         GoobScraperLexer lexer = new GoobScraperLexer(input);
         CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
         GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
