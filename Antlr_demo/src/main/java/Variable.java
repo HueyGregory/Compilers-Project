@@ -3,16 +3,18 @@
 
 public class Variable {
     private String text;
+    private String url;
 
-    public Variable(String text) {
+    public Variable(String url, String text) {
+        this.url = url;
         this.text = text;
     }
 
     public String getText() {
         return this.text;
     }
-    public static Variable variableFactory(String text) {
-        return new Variable(text);
+    public static Variable variableFactory(String url, String text) {
+        return new Variable(url, text);
     }
 
 }

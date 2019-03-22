@@ -1,8 +1,12 @@
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Path;
 import java.util.*;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CodePointCharStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.*;
 
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
@@ -11,21 +15,53 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
     @Override
     public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
-        String file = ctx.word().getText();
-        int time = Integer.getInteger(ctx.time().NUMBER().getText());
+        // the metadata of each file will be stored in a separate file with a MD.txt
+        String fileName = ctx.word().getText() + "_MD.txt";
+        String timeStr = ctx.time().NUMBER().getText();
+        int time = Integer.parseInt(timeStr);
         String updateType = ctx.update().getText();
-        if (updateType.equals("append")) {
-   //         visitUpdateAppend(file, time);
+        File file = null;
+        try {
+            file = getFile(fileName);
+            updateMetaDataFile(updateType, file, time);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
         }
+
         System.out.println("updateType: " + time);
         return null;
     }
 
-    public Variable visitUpdateAppend(String file, int time) {
-        System.out.println("updateAppendType: ");
-        return null;
+    private void updateMetaDataFile(String updateType, File file, int time) throws IOException {
+        System.out.println("updateAppendType; file: " + file.getName() + "; time: " + time);
+        // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
+        String line, content = "";
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        String theLine = "update: " + updateType + "\n";
+        while ((line = br.readLine()) != null) {
+            if (line.contains("update: "))  content += "\n" + theLine;
+            else content+=line + "\n";
+        }
+        br.close();
+        if (!content.contains(theLine)) content += theLine;
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(content);
+        bw.close();
     }
 
+    private File getFile(String fileName) throws IOException {
+        File file = new File(fileName);
+        // find the variable in the file which will indicate whether to append, replace, or merge
+        if (!file.exists()) { file.createNewFile(); }
+        if (!file.canRead() || !file.canWrite()) {
+            file.delete();
+            file.createNewFile();
+        }
+        return file;
+    }
 
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
@@ -43,7 +79,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             Scanner scanner = new Scanner(response);
             String responseBody = scanner.useDelimiter("\\A").next();
             System.out.println(responseBody);
-            return Variable.variableFactory(responseBody);
+            return Variable.variableFactory(url, responseBody);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -124,15 +160,21 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("~$: ");
-        ANTLRInputStream input = new ANTLRInputStream(br);
-        GoobScraperLexer lexer = new GoobScraperLexer(input);
-        CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
-        GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
-        ParseTree tree = parser.program();
-        TestGoobScraperVisitor testGoobScraperVisitor = new TestGoobScraperVisitor();
-        testGoobScraperVisitor.visit(tree);
+
+        while (true) {
+            Reader reader = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(reader);
+            System.out.print("~$: ");
+            System.out.println("\n" + reader.ready());
+            CharStream input = CharStreams.fromReader(br);
+            // ANTLRInputStream input = new ANTLRInputStream(br);
+            GoobScraperLexer lexer = new GoobScraperLexer(input);
+            CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
+            GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
+            ParseTree tree = parser.program();
+            TestGoobScraperVisitor testGoobScraperVisitor = new TestGoobScraperVisitor();
+            testGoobScraperVisitor.visit(tree);
+        }
 
     }
 
