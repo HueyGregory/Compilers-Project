@@ -2,8 +2,8 @@
 // Variables will reference the data that was returned by the program
 
 public class Variable {
-    private String text;
-    private String url;
+    private final String text;
+    private final String url;
 
     public Variable(String url, String text) {
         this.url = url;
@@ -17,4 +17,7 @@ public class Variable {
         return new Variable(url, text);
     }
 
+    public String getURL() {
+        return this.url;
+    }
 }

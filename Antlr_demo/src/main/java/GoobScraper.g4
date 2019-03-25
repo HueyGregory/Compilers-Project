@@ -14,14 +14,11 @@ get : (word)                       #RegularGet
     ;
 
 extract : 'append' (word)? (word)   #ExtractAppend
-        | 'merge' (word)? (word)    #ExtractMerge
-        | 'replace' (word)? (word)  #ExtractReplace
         |  'new'  (word)? (word)    #ExtractNew
         ;
 
 update : 'append'   #UpdateAppend
-       | 'merge'   #UpdateMerge
-       | 'replace' #UpdateReplace
+       | 'new' #UpdateNew
        ;
 
 alert : word    #AlertWord

@@ -1,45 +1,45 @@
 import java.io.*;
-import java.util.*;
 import java.net.URL;
-import java.nio.file.Path;
 import java.net.URLConnection;
-import org.antlr.v4.runtime.tree.*;
+import java.nio.file.Path;
+import java.util.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.CodePointCharStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.*;
 
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     private Map<String,Variable> varMem = new HashMap<>();
+    private Variable lastVar;
 
 
     @Override
     public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
         // the metadata of each file will be stored in a separate file with a MD.txt
         String fileName = ctx.word().getText() + "_MD.txt";
-        String timeStr = ctx.time().NUMBER().getText();
-        int time = Integer.parseInt(timeStr);
+        String timeStr = ctx.time().getText();
         String updateType = ctx.update().getText();
         File file = null;
         try {
             file = getFile(fileName);
-            updateMetaDataFile(updateType, file, time);
+            updateMetaDataFile(updateType, timeStr, file);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException();
         }
 
-        System.out.println("updateType: " + time);
+        System.out.println("updateType: ");
         return null;
     }
 
-    private void updateMetaDataFile(String updateType, File file, int time) throws IOException {
-        System.out.println("updateAppendType; file: " + file.getName() + "; time: " + time);
+    private void updateMetaDataFile(String updateType, String updateTime, File file) throws IOException {
+        System.out.println("updateAppendType; file: " + file.getName());
         // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
         String line;StringBuilder content = new StringBuilder();
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
-        String theLine = "update: " + updateType + "\n";
+        String theLine = "update: " + updateType + "; " + updateTime + "\n";
         while ((line = br.readLine()) != null) {
             if (line.contains("update: "))  content.append("\n").append(theLine);
             else content.append(line).append("\n");
@@ -49,6 +49,25 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(content.toString());
+        bw.close();
+    }
+
+    private void insertURLMetaDataFile(String url, File file) throws IOException {
+        System.out.println("updateAppendType; file: " + file.getName());
+        // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
+        String line, content = "";
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        String theLine = "URL: " + url + ";\n";
+        while ((line = br.readLine()) != null) {
+            if (line.contains("URL: "))  content += "\n" + theLine;
+            else content+=line + "\n";
+        }
+        br.close();
+        if (!content.contains(theLine)) content += theLine;
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(content);
         bw.close();
     }
 
@@ -113,12 +132,14 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
      */
     @Override
     public Variable visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
-        String file = "",var = "";
+        String file = "";
+        Variable var = null;
         int wordNum = ctx.word().size();
         if(wordNum == 1){
             file = ctx.getChild(1).getText();
+            var = lastVar;
         }else if(wordNum == 2){
-            var = ctx.getChild(1).getText();
+            var = varMem.get(ctx.getChild(1).getText());
             file = ctx.getChild(2).getText();
         }
 
@@ -126,7 +147,9 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             FileWriter writer = new FileWriter(file.replace("\"",""),false);
             //test example:
             writer.append("ID");writer.append(',');writer.append("name");writer.append('\n');
-
+            if (var != null) {
+                insertURLMetaDataFile(varMem.get(var).getURL(), getFile(file.replace("\"","") + "_MD.txt"));
+            }
             writer.flush();
             writer.close();
         } catch (IOException e) {
@@ -137,12 +160,14 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
     @Override
     public Void visitExtractAppend(GoobScraperParser.ExtractAppendContext ctx) {
-        String file = "",var = "";
+        String file = "";
+        Variable var = null;
         int wordNum = ctx.word().size();
         if(wordNum == 1){
             file = ctx.getChild(1).getText();
+            var = lastVar;
         }else if(wordNum == 2){
-            var = ctx.getChild(1).getText();
+            var = varMem.get(ctx.getChild(1).getText());
             file = ctx.getChild(2).getText();
         }
         try {
@@ -152,6 +177,12 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
             writer.flush();
             writer.close();
+
+            if (var != null) {
+                insertURLMetaDataFile(varMem.get(var).getURL(), getFile(file.replace("\"","") + "_MD.txt"));
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
