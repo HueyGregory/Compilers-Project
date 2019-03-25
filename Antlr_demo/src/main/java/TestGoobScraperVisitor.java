@@ -1,13 +1,13 @@
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.Path;
 import java.util.*;
+import java.net.URL;
+import java.nio.file.Path;
+import java.net.URLConnection;
+import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.CodePointCharStream;
 
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     private Map<String,Variable> varMem = new HashMap<>();
@@ -36,19 +36,19 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     private void updateMetaDataFile(String updateType, File file, int time) throws IOException {
         System.out.println("updateAppendType; file: " + file.getName() + "; time: " + time);
         // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
-        String line, content = "";
+        String line;StringBuilder content = new StringBuilder();
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
         String theLine = "update: " + updateType + "\n";
         while ((line = br.readLine()) != null) {
-            if (line.contains("update: "))  content += "\n" + theLine;
-            else content+=line + "\n";
+            if (line.contains("update: "))  content.append("\n").append(theLine);
+            else content.append(line).append("\n");
         }
         br.close();
-        if (!content.contains(theLine)) content += theLine;
+        if (!content.toString().contains(theLine)) content.append(theLine);
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(content);
+        bw.write(content.toString());
         bw.close();
     }
 
@@ -162,12 +162,9 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     public static void main(String[] args) throws IOException {
 
         while (true) {
-            Reader reader = new InputStreamReader(System.in);
-            BufferedReader br = new BufferedReader(reader);
             System.out.print("~$: ");
-            System.out.println("\n" + reader.ready());
-            CharStream input = CharStreams.fromReader(br);
-            // ANTLRInputStream input = new ANTLRInputStream(br);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            CharStream input = CharStreams.fromString(br.readLine());
             GoobScraperLexer lexer = new GoobScraperLexer(input);
             CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
             GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
