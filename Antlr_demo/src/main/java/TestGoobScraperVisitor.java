@@ -84,6 +84,8 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
+        String[] allTags = lastVar.getText().split("[<]");
+
         return visitChildren(ctx);
     }
 
@@ -98,7 +100,10 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             Scanner scanner = new Scanner(response);
             String responseBody = scanner.useDelimiter("\\A").next();
             System.out.println(responseBody);
-            return Variable.variableFactory(url, responseBody);
+            lastVar = Variable.variableFactory(url, responseBody);
+            varMem.put(lastVar.getName(), lastVar);
+            System.out.println("Variable reference name: " + lastVar.getName());
+            return lastVar;
         } catch (IOException e) {
             e.printStackTrace();
         }
