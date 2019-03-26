@@ -8,6 +8,8 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     private Map<String,Variable> varMem = new HashMap<>();
@@ -84,7 +86,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
-        String[] allTags = lastVar.getText().split("[<]");
+        //Document doc = Jsoup.parse();
 
         return visitChildren(ctx);
     }

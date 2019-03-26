@@ -22,7 +22,9 @@ public class Variable {
     public final String getText() {
         return this.text;
     }
-    public final void setText(String text) { this.text = text; }
+    public final void setText(String text) {
+        this.text = text;
+    }
 
     public static final Variable variableFactory(String url, String text) {
         return new Variable(url, text);
@@ -34,7 +36,9 @@ public class Variable {
      *
      * @return
      */
-    public final String getName() { return this.getName(); }
+    public final String getName() {
+        return this.name;
+    }
 
     // only used by /update
     public String getFileName() {
