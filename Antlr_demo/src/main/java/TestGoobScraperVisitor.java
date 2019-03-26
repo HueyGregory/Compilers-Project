@@ -189,13 +189,20 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         return null;
     }
 
+    @Override
+    public Void visitQuitStatment(GoobScraperParser.QuitStatmentContext ctx){
+        System.out.println("Quitting");
+        System.exit(0);
+        return null;
+    }
+
 
     public static void main(String[] args) throws IOException {
-
         while (true) {
             System.out.print("~$: ");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            CharStream input = CharStreams.fromString(br.readLine());
+            String inputLine = br.readLine();
+            CharStream input = CharStreams.fromString(inputLine);
             GoobScraperLexer lexer = new GoobScraperLexer(input);
             CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
             GoobScraperParser parser = new GoobScraperParser(commonTokenStream);

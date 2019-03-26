@@ -3,9 +3,10 @@ grammar GoobScraper;
 program: statment+;
 
 statment: '/get' get ';'                   #GetStatment
-        | '/extract' extract ';'    #ExtractStatment
+        | '/extract' extract ';'           #ExtractStatment
         | '/update' update word? time ';'  #UpdateStatment
         | '/alert' alert time ';'          #AlertStatment
+        | '/quit' ';'                      #QuitStatment
         ;
 
 get : (word)                       #RegularGet
