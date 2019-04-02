@@ -93,14 +93,55 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         }
         return file;
     }
+    //ex. /get table <url> or VAR;
+    @Override
+    public Void visitGetTable(GoobScraperParser.GetTableContext ctx){
+        //TODO: instead of printing write to csv file for each table
+        try {
+            String urlTest = "https://www.w3schools.com/html/html_tables.asp";
+            String url = ctx.getChild(1).getText().replace("\"", "");
+            Document doc = Jsoup.connect(urlTest).get();
+            Elements tables = doc.getElementsByTag("table");
 
+            for(Element table : tables){
+                Elements rows = table.select("tr");
+                Elements ths = rows.select("th");
+
+                String thstr = "";
+                for (Element th : ths) {
+                    thstr += th.text() + ",";
+                }
+                System.out.print(thstr);
+
+                for (Element row : rows) {
+                    Elements tds = row.select("td");
+                    for (Element td : tds) {
+                        System.out.print(td.text() + ",");  // --> This will print them
+                        // individually
+                    }
+                    System.out.println(); // --> This will print everything in the row
+                }
+                // System.out.println(table);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            return null;
+    }
+
+    // ex. /get <any tag> <url>
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
         try {
+            String url = ctx.getChild(0).getText();
             Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis").get();
-            Elements elements = doc.getElementsByTag("table");
-            String bob  = elements.toString();
-            System.out.println(bob);
+            //Elements tables = doc.getElementsByTag("table");
+
+            /*for(Element table : tables){
+                table.getElementsByTag("");
+            }*/
+            //String bob  = elements.toString();
+            //System.out.println(bob);
         } catch (IOException e) {
             e.printStackTrace();
         }
