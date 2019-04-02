@@ -1,7 +1,9 @@
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -21,10 +23,16 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     @Override
     public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
         // the metadata of each file will be stored in a separate file with a MD.txt
-        String fileName = ctx.word().getText() + "_MD.txt";
+        String fileName;
+        if (Files.exists(Paths.get(ctx.word().getText()))) {
+            fileName = ctx.word().getText();
+        }
+        else {
+            fileName = getVar(ctx.word()).getFileName();
+        }
         String timeStr = ctx.time().getText();
         String updateType = ctx.update().getText();
-        File file = null;
+        File file;
         try {
             file = getFile(fileName);
             updateMetaDataFile(updateType, timeStr, file);
@@ -88,7 +96,6 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
-        //Document doc = Jsoup.parse("<!DOCTYPE html> <html> <body>  <h1>My First Heading</h1>  <p>My first paragraph.</p>  </body> </html>");
         try {
             Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis").get();
             Elements elements = doc.getElementsByTag("table");
@@ -106,7 +113,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         //https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis
         URLConnection connection = null;
         try {
-            String url = ctx.word().getText().replace("\"","");
+            String url = ctx.word().getText().replace("\"", "");
             connection = new URL(url).openConnection();
             InputStream response = connection.getInputStream();
             Scanner scanner = new Scanner(response);
@@ -119,25 +126,6 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-
-    @Override
-    public Void visitWordID(GoobScraperParser.WordIDContext ctx) {
-        String id = ctx.ID().getText();
-        return null;
-    }
-
-    @Override
-    public Void visitWordNumber(GoobScraperParser.WordNumberContext ctx) {
-        String number = ctx.NUMBER().getText();
-        return null;
-    }
-
-    @Override
-    public Void visitWordString(GoobScraperParser.WordStringContext ctx) {
-        String string = ctx.STRING().getText();
         return null;
     }
 
@@ -166,6 +154,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             writer.append("ID");writer.append(',');writer.append("name");writer.append('\n');
             if (var != null) {
                 insertURLMetaDataFile(varMem.get(var).getURL(), getFile(file.replace("\"","") + "_MD.txt"));
+                var.setFileName(file);
             }
             writer.flush();
             writer.close();
@@ -197,6 +186,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
             if (var != null) {
                 insertURLMetaDataFile(varMem.get(var).getURL(), getFile(file.replace("\"","") + "_MD.txt"));
+                var.setFileName(file);
             }
 
 
@@ -211,6 +201,16 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         System.out.println("Quitting");
         System.exit(0);
         return null;
+    }
+
+    private Variable getVar(GoobScraperParser.WordContext ctxWord) {
+        if (ctxWord != null){
+            if (varMem.get(ctxWord.getText()) != null)
+                return varMem.get(ctxWord.getText());
+        }
+        if (lastVar == null)
+            throw new RuntimeException();
+        return lastVar;
     }
 
 

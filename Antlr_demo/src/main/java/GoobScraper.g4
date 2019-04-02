@@ -9,7 +9,7 @@ statment: '/get' get ';'                   #GetStatment
         | '/quit' ';'                      #QuitStatment
         ;
 
-get : (word)                       #RegularGet
+get : (word) (word)?                     #RegularGet
     | 'url' (word)                 #GetURL
     | ('tables' | 'table') (word)? #GetTable
     ;

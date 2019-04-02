@@ -36,9 +36,7 @@ public class Variable {
      *
      * @return
      */
-    public final String getName() {
-        return this.name;
-    }
+    public final String getName() { return this.name; }
 
     // only used by /update
     public String getFileName() {
