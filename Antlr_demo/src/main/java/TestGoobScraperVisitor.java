@@ -11,6 +11,7 @@ import org.antlr.v4.runtime.tree.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     private Map<String,Variable> varMem = new HashMap<>();
@@ -87,10 +88,16 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
-        Document doc = Jsoup.parse("<!DOCTYPE html> <html> <body>  <h1>My First Heading</h1>  <p>My first paragraph.</p>  </body> </html>");
-        Element e = doc.body();
-        String bob  = e.text();
-        System.out.println(bob);
+        //Document doc = Jsoup.parse("<!DOCTYPE html> <html> <body>  <h1>My First Heading</h1>  <p>My first paragraph.</p>  </body> </html>");
+        try {
+            Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis").get();
+            Elements elements = doc.getElementsByTag("table");
+            String bob  = elements.toString();
+            System.out.println(bob);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return visitChildren(ctx);
     }
 
