@@ -2,10 +2,12 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.*;
 import org.jsoup.Jsoup;
@@ -113,9 +115,9 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         }
 
         try {
-          //  String urlTest = "https://www.w3schools.com/html/html_tables.asp";
-         //   String url = ctx.getChild(1).getText().replace("\"", "");
-        //    Document doc = Jsoup.connect(urlTest).get();
+              // String urlTest = "https://www.w3schools.com/html/html_tables.asp";
+             // String url = ctx.getChild(1).getText().replace("\"", "");
+            // Document doc = Jsoup.connect(urlTest).get();
             Document doc = Jsoup.parse(html);
             Elements tables = doc.getElementsByTag("table");
 
@@ -150,13 +152,18 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     @Override
     public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
         try {
-            String url = ctx.getChild(0).getText();
-            Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis").get();
-            //Elements tables = doc.getElementsByTag("table");
-
-            /*for(Element table : tables){
-                table.getElementsByTag("");
-            }*/
+            String url = ctx.getChild(1).getText();
+            String searchWord = ctx.getChild(0).getText();
+            // "https://www.simplyhired.com/search?q=software+engineer+internship&l=&job=n7bNHcC6SCTRXJm6oS_OARzDwQVbKXWHX21n6YVrcdjMNKBO1E1QwQ"
+            Document doc = Jsoup.connect(url).get();
+            Elements searchWords = doc.getElementsByTag("a");
+            List<Element> foundElements = new ArrayList<>();
+            for(Element word : searchWords){
+                String txt = word.toString();
+                if(txt.contains(searchWord)){
+                    foundElements.add(word);
+                }
+            }
             //String bob  = elements.toString();
             //System.out.println(bob);
         } catch (IOException e) {
