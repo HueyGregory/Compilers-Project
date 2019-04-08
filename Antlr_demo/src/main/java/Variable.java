@@ -1,6 +1,8 @@
 
 // Variables will reference the data that was returned by the program
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -9,12 +11,14 @@ public class Variable {
     private String url;
     private String name;
     private String fileName;
+    private List<String> steps;
     private static AtomicInteger number = new AtomicInteger(0);
 
     public Variable(String url, String text) {
         this.name = newName();
         this.url = url;
         this.text = text;
+        this.steps = new ArrayList<String>();
     }
 
     private String newName() { return String.valueOf(number.getAndIncrement()); }
@@ -24,6 +28,13 @@ public class Variable {
     }
     public final void setText(String text) {
         this.text = text;
+    }
+
+    public final void addStep(String step) {
+        this.steps.add(step);
+    }
+    public final List<String> getSteps() {
+        return this.steps;
     }
 
     public static final Variable variableFactory(String url, String text) {

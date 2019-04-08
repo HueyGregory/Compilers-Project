@@ -2,12 +2,10 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.*;
 import org.jsoup.Jsoup;
@@ -64,22 +62,30 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         bw.close();
     }
 
-    private void insertURLMetaDataFile(String url, File file) throws IOException {
+    private void insertVarMetaDataFile(Variable var, File file) throws IOException {
         System.out.println("updateAppendType; file: " + file.getName());
         // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
-        String line, content = "";
+        String line;
+        StringBuilder content = new StringBuilder();
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
-        String theLine = "URL: " + url + ";\n";
+        String theLine = "URL: " + var.getURL() + ";\n";
+        String steps = "Steps: \n";
         while ((line = br.readLine()) != null) {
-            if (line.contains("URL: "))  content += "\n" + theLine;
-            else content+=line + "\n";
+            if (line.contains("URL: "))  content.append("\n").append(theLine);
+            if (line.contains("Steps: ")) {
+                content.append("\n").append(steps);
+                for (String step : var.getSteps()) {
+                    content.append(step).append("\n");
+                }
+            }
+            else content.append(line).append("\n");
         }
         br.close();
-        if (!content.contains(theLine)) content += theLine;
+        if (!content.toString().contains(theLine)) content.append(theLine);
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(content);
+        bw.write(content.toString());
         bw.close();
     }
 
@@ -93,14 +99,24 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         }
         return file;
     }
-    //ex. /get table <url> or VAR;
+    //ex. "/get table VAR" or "/get table";
     @Override
     public Void visitGetTable(GoobScraperParser.GetTableContext ctx){
         //TODO: instead of printing write to csv file for each table
+        String html;
+        Variable var;
+        if ((var = getVar(ctx.word())) == null) {
+            html = lastVar.getText();
+        }
+        else {
+            html = var.getText();
+        }
+
         try {
-            String urlTest = "https://www.w3schools.com/html/html_tables.asp";
-            String url = ctx.getChild(1).getText().replace("\"", "");
-            Document doc = Jsoup.connect(urlTest).get();
+          //  String urlTest = "https://www.w3schools.com/html/html_tables.asp";
+         //   String url = ctx.getChild(1).getText().replace("\"", "");
+        //    Document doc = Jsoup.connect(urlTest).get();
+            Document doc = Jsoup.parse(html);
             Elements tables = doc.getElementsByTag("table");
 
             for(Element table : tables){
@@ -123,9 +139,10 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
                 }
                 // System.out.println(table);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        var.addStep("/get table");
             return null;
     }
 
@@ -162,6 +179,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             System.out.println(responseBody);
             lastVar = Variable.variableFactory(url, responseBody);
             varMem.put(lastVar.getName(), lastVar);
+            lastVar.addStep("/get url " + ctx.word().getText());
             System.out.println("Variable reference name: " + lastVar.getName());
             return lastVar;
         } catch (IOException e) {
@@ -194,7 +212,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             //test example:
             writer.append("ID");writer.append(',');writer.append("name");writer.append('\n');
             if (var != null) {
-                insertURLMetaDataFile(varMem.get(var).getURL(), getFile(file.replace("\"","") + "_MD.txt"));
+                insertVarMetaDataFile(varMem.get(var), getFile(file.replace("\"","") + "_MD.txt"));
                 var.setFileName(file);
             }
             writer.flush();
@@ -226,7 +244,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             writer.close();
 
             if (var != null) {
-                insertURLMetaDataFile(varMem.get(var).getURL(), getFile(file.replace("\"","") + "_MD.txt"));
+                insertVarMetaDataFile(varMem.get(var), getFile(file.replace("\"","") + "_MD.txt"));
                 var.setFileName(file);
             }
 
