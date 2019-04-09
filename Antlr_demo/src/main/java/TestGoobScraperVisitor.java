@@ -145,7 +145,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
                 }
                 //separates tables when being displayed
                 System.out.println("---------------------------------------------------------------");
-                contentTxt.append("---------------------------------------------------------------").append("\n");
+                contentTxt.append("-:-").append("\n");
             }
             var.setText(contentTxt.toString());// set content to var
         } catch (Exception e) {
@@ -227,14 +227,44 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             //writer.append("ID");writer.append(',');writer.append("name");writer.append('\n');
             assert var != null;
             String htmlTxt = var.getText();
+            String[] tables = htmlTxt.split("-:-");
+            for (String table : tables) {
+                if(table.length() > 1){
+                    table = table.substring(0, table.length() -2);//remove the ',' at the end so table ends
+                    writer.append(table);
+                }
+            }
+            writer.flush();
+            writer.close();
+            /*EX:
+                Company,Contact,Country,
+                Alfreds Futterkiste,Maria Anders,Germany,
+                Centro comercial Moctezuma,Francisco Chang,Mexico,
+                Ernst Handel,Roland Mendel,Austria,
+                Island Trading,Helen Bennett,UK,
+                Laughing Bacchus Winecellars,Yoshi Tannamuri,Canada,
+                Magazzini Alimentari Riuniti,Giovanni Rovelli,Italy,
+                ---------------------------------------------------------------
+                Tag,Description,
+                <table>,Defines a table,
+                <th>,Defines a header cell in a table,
+                <tr>,Defines a row in a table,
+                <td>,Defines a cell in a table,
+                <caption>,Defines a table caption,
+                <colgroup>,Specifies a group of one or more columns in a table for formatting,
+                <col>,Specifies column properties for each column within a <colgroup> element,
+                <thead>,Groups the header content in a table,
+                <tbody>,Groups the body content in a table,
+                <tfoot>,Groups the footer content in a table,
+                ---------------------------------------------------------------
+             */
 
 
             if (var != null) {
                 insertVarMetaDataFile(varMem.get(var), getFile(file.replace("\"","") + "_MD.txt"));
                 var.setFileName(file);
             }
-            writer.flush();
-            writer.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -295,9 +325,11 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         while (true) {
             System.out.print("~$: ");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String inputLine = br.readLine();
-            CharStream input = CharStreams.fromString(inputLine);
-            GoobScraperLexer lexer = new GoobScraperLexer(input);
+            //String inputLine = br.readLine();
+            //CharStream input = CharStreams.fromString(inputLine);
+            //GoobScraperLexer lexer = new GoobScraperLexer(input);
+            CharStream inputStream = CharStreams.fromFileName("/home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/test/java/input.txt");
+            GoobScraperLexer lexer = new GoobScraperLexer(inputStream);
             CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
             GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
             ParseTree tree = parser.program();
