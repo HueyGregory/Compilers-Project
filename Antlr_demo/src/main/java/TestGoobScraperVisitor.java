@@ -121,6 +121,8 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             Document doc = Jsoup.parse(html);
             Elements tables = doc.getElementsByTag("table");
 
+            StringBuilder contentTxt = new StringBuilder();
+
             for(Element table : tables){
                 Elements rows = table.select("tr");
                 Elements ths = rows.select("th");
@@ -130,22 +132,27 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
                     thstr += th.text() + ",";
                 }
                 System.out.print(thstr);
+                contentTxt.append(thstr);
 
                 for (Element row : rows) {
                     Elements tds = row.select("td");
                     for (Element td : tds) {
-                        System.out.print(td.text() + ",");  // --> This will print them
-                        // individually
+                        System.out.print(td.text() + ",");  // --> This will print them individually
+                        contentTxt.append(td.text()).append(",");
                     }
-                    System.out.println(); // --> This will print everything in the row
+                    System.out.println(); //next row
+                    contentTxt.append("\n");
                 }
-                // System.out.println(table);
+                //separates tables when being displayed
+                System.out.println("---------------------------------------------------------------");
+                contentTxt.append("-:-").append("\n");
             }
+            var.setText(contentTxt.toString());// set content to var
         } catch (Exception e) {
             e.printStackTrace();
         }
         var.addStep("/get table");
-            return null;
+        return null;
     }
 
     // ex. /get <any tag> <url>
@@ -165,7 +172,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
                 }
             }
             //String bob  = elements.toString();
-            //System.out.println(bob);
+            System.out.println();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -217,13 +224,47 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         try {
             FileWriter writer = new FileWriter(file.replace("\"",""),false);
             //test example:
-            writer.append("ID");writer.append(',');writer.append("name");writer.append('\n');
+            //writer.append("ID");writer.append(',');writer.append("name");writer.append('\n');
+            assert var != null;
+            String htmlTxt = var.getText();
+            String[] tables = htmlTxt.split("-:-");
+            for (String table : tables) {
+                if(table.length() > 1){
+                    table = table.substring(0, table.length() -2);//remove the ',' at the end so table ends
+                    writer.append(table);
+                }
+            }
+            writer.flush();
+            writer.close();
+            /*EX:
+                Company,Contact,Country,
+                Alfreds Futterkiste,Maria Anders,Germany,
+                Centro comercial Moctezuma,Francisco Chang,Mexico,
+                Ernst Handel,Roland Mendel,Austria,
+                Island Trading,Helen Bennett,UK,
+                Laughing Bacchus Winecellars,Yoshi Tannamuri,Canada,
+                Magazzini Alimentari Riuniti,Giovanni Rovelli,Italy,
+                ---------------------------------------------------------------
+                Tag,Description,
+                <table>,Defines a table,
+                <th>,Defines a header cell in a table,
+                <tr>,Defines a row in a table,
+                <td>,Defines a cell in a table,
+                <caption>,Defines a table caption,
+                <colgroup>,Specifies a group of one or more columns in a table for formatting,
+                <col>,Specifies column properties for each column within a <colgroup> element,
+                <thead>,Groups the header content in a table,
+                <tbody>,Groups the body content in a table,
+                <tfoot>,Groups the footer content in a table,
+                ---------------------------------------------------------------
+             */
+
+
             if (var != null) {
                 insertVarMetaDataFile(varMem.get(var), getFile(file.replace("\"","") + "_MD.txt"));
                 var.setFileName(file);
             }
-            writer.flush();
-            writer.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
