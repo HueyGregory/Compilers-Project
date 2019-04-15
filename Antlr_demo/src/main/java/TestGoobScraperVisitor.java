@@ -16,8 +16,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
-    private Map<String,Variable> varMem = new HashMap<>();
-    private Variable lastVar;
+    private static Map<String,Variable> varMem = new HashMap<>();
+    private static Variable lastVar;
 
 
     @Override
@@ -280,11 +280,16 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         while (true) {
             System.out.print("~$: ");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String inputLine = br.readLine();
+            String inputLine = null;
+            try {
+                inputLine = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             CharStream input = CharStreams.fromString(inputLine);
             GoobScraperLexer lexer = new GoobScraperLexer(input);
             CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);

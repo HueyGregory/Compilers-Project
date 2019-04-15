@@ -26,7 +26,7 @@ alert : word    #AlertWord
       |         #AlertEmpty
       ;
 
-time : NUMBER ('sec' | 'min' | 'hrs' | 'day' | 'mon');
+time : NUMBER ('sec' | 'min' | 'hrs' | 'day');
 
 word : ID    #WordID
     | NUMBER #WordNumber
