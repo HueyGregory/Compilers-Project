@@ -1,4 +1,4 @@
-// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
+// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -75,6 +75,18 @@ public class GoobScraperBaseListener implements GoobScraperListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterQuitStatment(GoobScraperParser.QuitStatmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitQuitStatment(GoobScraperParser.QuitStatmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRegularGet(GoobScraperParser.RegularGetContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -123,30 +135,6 @@ public class GoobScraperBaseListener implements GoobScraperListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExtractMerge(GoobScraperParser.ExtractMergeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExtractMerge(GoobScraperParser.ExtractMergeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterExtractReplace(GoobScraperParser.ExtractReplaceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExtractReplace(GoobScraperParser.ExtractReplaceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExtractNew(GoobScraperParser.ExtractNewContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -171,25 +159,13 @@ public class GoobScraperBaseListener implements GoobScraperListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUpdateMerge(GoobScraperParser.UpdateMergeContext ctx) { }
+	@Override public void enterUpdateNew(GoobScraperParser.UpdateNewContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUpdateMerge(GoobScraperParser.UpdateMergeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUpdateReplace(GoobScraperParser.UpdateReplaceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUpdateReplace(GoobScraperParser.UpdateReplaceContext ctx) { }
+	@Override public void exitUpdateNew(GoobScraperParser.UpdateNewContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

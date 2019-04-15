@@ -1,4 +1,4 @@
-// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
+// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -44,6 +44,13 @@ public interface GoobScraperVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlertStatment(GoobScraperParser.AlertStatmentContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code QuitStatment}
+	 * labeled alternative in {@link GoobScraperParser#statment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQuitStatment(GoobScraperParser.QuitStatmentContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code RegularGet}
 	 * labeled alternative in {@link GoobScraperParser#get}.
 	 * @param ctx the parse tree
@@ -72,20 +79,6 @@ public interface GoobScraperVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExtractAppend(GoobScraperParser.ExtractAppendContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ExtractMerge}
-	 * labeled alternative in {@link GoobScraperParser#extract}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExtractMerge(GoobScraperParser.ExtractMergeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ExtractReplace}
-	 * labeled alternative in {@link GoobScraperParser#extract}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExtractReplace(GoobScraperParser.ExtractReplaceContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code ExtractNew}
 	 * labeled alternative in {@link GoobScraperParser#extract}.
 	 * @param ctx the parse tree
@@ -100,19 +93,12 @@ public interface GoobScraperVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUpdateAppend(GoobScraperParser.UpdateAppendContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code UpdateMerge}
+	 * Visit a parse tree produced by the {@code UpdateNew}
 	 * labeled alternative in {@link GoobScraperParser#update}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUpdateMerge(GoobScraperParser.UpdateMergeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code UpdateReplace}
-	 * labeled alternative in {@link GoobScraperParser#update}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUpdateReplace(GoobScraperParser.UpdateReplaceContext ctx);
+	T visitUpdateNew(GoobScraperParser.UpdateNewContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code AlertWord}
 	 * labeled alternative in {@link GoobScraperParser#alert}.

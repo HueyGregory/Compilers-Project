@@ -1,4 +1,4 @@
-// Generated from /home/noah/Documents/CS_HW/Compilers/Compilers-Project/Antlr_demo/src/main/java/GoobScraper.g4 by ANTLR 4.7.2
+// Generated from C:/Users/yaeav/Documents/YU/YU Classes/Spring 2019/Compiler/Git Repository/Compilers-Project/Antlr_demo/src/main/java\GoobScraper.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -65,6 +65,18 @@ public interface GoobScraperListener extends ParseTreeListener {
 	 */
 	void exitAlertStatment(GoobScraperParser.AlertStatmentContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code QuitStatment}
+	 * labeled alternative in {@link GoobScraperParser#statment}.
+	 * @param ctx the parse tree
+	 */
+	void enterQuitStatment(GoobScraperParser.QuitStatmentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code QuitStatment}
+	 * labeled alternative in {@link GoobScraperParser#statment}.
+	 * @param ctx the parse tree
+	 */
+	void exitQuitStatment(GoobScraperParser.QuitStatmentContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code RegularGet}
 	 * labeled alternative in {@link GoobScraperParser#get}.
 	 * @param ctx the parse tree
@@ -113,30 +125,6 @@ public interface GoobScraperListener extends ParseTreeListener {
 	 */
 	void exitExtractAppend(GoobScraperParser.ExtractAppendContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ExtractMerge}
-	 * labeled alternative in {@link GoobScraperParser#extract}.
-	 * @param ctx the parse tree
-	 */
-	void enterExtractMerge(GoobScraperParser.ExtractMergeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ExtractMerge}
-	 * labeled alternative in {@link GoobScraperParser#extract}.
-	 * @param ctx the parse tree
-	 */
-	void exitExtractMerge(GoobScraperParser.ExtractMergeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ExtractReplace}
-	 * labeled alternative in {@link GoobScraperParser#extract}.
-	 * @param ctx the parse tree
-	 */
-	void enterExtractReplace(GoobScraperParser.ExtractReplaceContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ExtractReplace}
-	 * labeled alternative in {@link GoobScraperParser#extract}.
-	 * @param ctx the parse tree
-	 */
-	void exitExtractReplace(GoobScraperParser.ExtractReplaceContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code ExtractNew}
 	 * labeled alternative in {@link GoobScraperParser#extract}.
 	 * @param ctx the parse tree
@@ -161,29 +149,17 @@ public interface GoobScraperListener extends ParseTreeListener {
 	 */
 	void exitUpdateAppend(GoobScraperParser.UpdateAppendContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UpdateMerge}
+	 * Enter a parse tree produced by the {@code UpdateNew}
 	 * labeled alternative in {@link GoobScraperParser#update}.
 	 * @param ctx the parse tree
 	 */
-	void enterUpdateMerge(GoobScraperParser.UpdateMergeContext ctx);
+	void enterUpdateNew(GoobScraperParser.UpdateNewContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UpdateMerge}
+	 * Exit a parse tree produced by the {@code UpdateNew}
 	 * labeled alternative in {@link GoobScraperParser#update}.
 	 * @param ctx the parse tree
 	 */
-	void exitUpdateMerge(GoobScraperParser.UpdateMergeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code UpdateReplace}
-	 * labeled alternative in {@link GoobScraperParser#update}.
-	 * @param ctx the parse tree
-	 */
-	void enterUpdateReplace(GoobScraperParser.UpdateReplaceContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code UpdateReplace}
-	 * labeled alternative in {@link GoobScraperParser#update}.
-	 * @param ctx the parse tree
-	 */
-	void exitUpdateReplace(GoobScraperParser.UpdateReplaceContext ctx);
+	void exitUpdateNew(GoobScraperParser.UpdateNewContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code AlertWord}
 	 * labeled alternative in {@link GoobScraperParser#alert}.
