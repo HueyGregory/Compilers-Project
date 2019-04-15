@@ -152,6 +152,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             e.printStackTrace();
         }
         var.addStep("/get table");
+        lastVar = var;
         return null;
     }
 
@@ -212,6 +213,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     public Variable visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
         String file = "";
         Variable var = null;
+        System.out.println("lastVar: " + lastVar.getName());
         int wordNum = ctx.word().size();
         if(wordNum == 1){
             file = ctx.getChild(1).getText();
@@ -261,7 +263,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
 
             if (var != null) {
-                insertVarMetaDataFile(varMem.get(var), getFile(file.replace("\"","") + "_MD.txt"));
+                insertVarMetaDataFile(varMem.get(var.getName()), getFile(file.replace("\"","") + "_MD.txt"));
                 var.setFileName(file);
             }
 

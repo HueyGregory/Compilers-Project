@@ -8,6 +8,14 @@ public class FileUpdateInformation implements Runnable {
     @Override
     public void run() {
         System.out.println(this.mdFile);
+        // check metadata file again and update times based on that
+
+        // extract steps from metadata file
+
+        // follow the steps by calling the program in the cmd
+
+        // call extract depending on the updateType
+
 
     }
 
@@ -45,7 +53,7 @@ public class FileUpdateInformation implements Runnable {
     private TimeUnit timeType;
     private UpdateType updateType;
 
-    public FileUpdateInformation(File mdFile, double updateTime, TimeUnit timeType, String updateType) {
+    FileUpdateInformation(File mdFile, double updateTime, TimeUnit timeType, String updateType) {
         this.mdFile = mdFile;
         this.updateTime = updateTime;
         this.timeType = timeType;
