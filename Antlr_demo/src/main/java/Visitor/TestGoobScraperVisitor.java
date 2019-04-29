@@ -1,3 +1,5 @@
+package Visitor;
+
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -24,17 +26,21 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
         // the metadata of each file will be stored in a separate file with a MD.txt
         String fileName;
-        if (Files.exists(Paths.get(ctx.word().getText()))) {
+        if (ctx.word() == null ) {
+            fileName = lastVar.getFileName();
+        }
+        else if (Files.exists(Paths.get(ctx.word().getText()))) {
             fileName = ctx.word().getText();
         }
         else {
             fileName = getVar(ctx.word()).getFileName();
         }
         String timeStr = ctx.time().getText();
+        System.out.println(timeStr);
         String updateType = ctx.update().getText();
         File file;
         try {
-            file = getFile(fileName);
+            file = getFile(getMDFileName(fileName));
             updateMetaDataFile(updateType, timeStr, file);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,9 +52,10 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     }
 
     private void updateMetaDataFile(String updateType, String updateTime, File file) throws IOException {
-        System.out.println("updateAppendType; file: " + file.getName());
+        System.out.println("updateMetaDataFile; file: " + file.getName());
         // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
         String line;StringBuilder content = new StringBuilder();
+        System.out.println(file.getName());
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
         String theLine = "update: " + updateType + "; " + updateTime + "\n";
@@ -65,23 +72,43 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     }
 
     private void insertVarMetaDataFile(Variable var, File file) throws IOException {
-        System.out.println("updateAppendType; file: " + file.getName());
+        System.out.println("insertVarMetaDataFile: updateAppendType; file: " + file.getName());
         // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
         String line;
+        boolean hadURL = false, hadSteps = false, readingSteps = false;
         StringBuilder content = new StringBuilder();
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
         String theLine = "URL: " + var.getURL() + ";\n";
-        String steps = "Steps: \n";
         while ((line = br.readLine()) != null) {
-            if (line.contains("URL: "))  content.append("\n").append(theLine);
-            if (line.contains("Steps: ")) {
-                content.append("\n").append(steps);
+            if (readingSteps && !(line.startsWith("End Steps"))) continue;
+            readingSteps = false;
+            if (line.equals("") || line.equals("End Steps")) continue;
+            if (line.startsWith("URL: ")) {
+                if(hadURL) continue;
+                content.append("\n").append(theLine).append("\n");
+                hadURL = true;
+            }
+            else if (line.startsWith("Steps: ")) {
+                if (hadSteps) continue;
+                content.append("\n").append("Steps: \n");
+                readingSteps = true;
+                hadSteps = true;
                 for (String step : var.getSteps()) {
                     content.append(step).append("\n");
                 }
+                content.append("End Steps").append("\n\n");
             }
+
             else content.append(line).append("\n");
+        }
+        if (!hadURL) content.append("\n").append(theLine).append("\n");
+        if (!hadSteps) {
+            content.append("Steps: \n");
+            for (String step : var.getSteps()) {
+                content.append(step).append("\n");
+            }
+            content.append("End Steps").append("\n\n");
         }
         br.close();
         if (!content.toString().contains(theLine)) content.append(theLine);
@@ -195,7 +222,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             lastVar = Variable.variableFactory(url, responseBody);
             varMem.put(lastVar.getName(), lastVar);
             lastVar.addStep("/get url " + ctx.word().getText());
-            System.out.println("Variable reference name: " + lastVar.getName());
+            System.out.println("Visitor.Variable reference name: " + lastVar.getName());
             return lastVar;
         } catch (IOException e) {
             e.printStackTrace();
@@ -213,7 +240,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     public Variable visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
         String file = "";
         Variable var = null;
-        System.out.println("lastVar: " + lastVar.getName());
+        System.out.println("visitExtractNew; lastVar: " + lastVar.getName());
         int wordNum = ctx.word().size();
         if(wordNum == 1){
             file = ctx.getChild(1).getText();
@@ -263,7 +290,8 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
 
 
             if (var != null) {
-                insertVarMetaDataFile(varMem.get(var.getName()), getFile(file.replace("\"","") + "_MD.txt"));
+                var.addStep("/extract new " + file.replace("\"",""));
+                insertVarMetaDataFile(varMem.get(var.getName()), getFile(getMDFileName(file.replace("\"",""))));
                 var.setFileName(file);
             }
 
@@ -294,7 +322,8 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             writer.close();
 
             if (var != null) {
-                insertVarMetaDataFile(varMem.get(var), getFile(file.replace("\"","") + "_MD.txt"));
+                var.addStep("/extract append " + file.replace("\"",""));
+                insertVarMetaDataFile(varMem.get(var), getFile(getMDFileName(file.replace("\"",""))));
                 var.setFileName(file);
             }
 
@@ -322,6 +351,10 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         return lastVar;
     }
 
+    private static String getMDFileName(String fileName) {
+        return fileName + "_MD.txt";
+    }
+
 
     public static void main(String[] args){
         while (true) {
@@ -333,15 +366,19 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            CharStream input = CharStreams.fromString(inputLine);
-            GoobScraperLexer lexer = new GoobScraperLexer(input);
-            CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
-            GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
-            ParseTree tree = parser.program();
-            TestGoobScraperVisitor testGoobScraperVisitor = new TestGoobScraperVisitor();
-            testGoobScraperVisitor.visit(tree);
+            parseAndRunLine(inputLine);
         }
 
+    }
+
+    public static void parseAndRunLine(String inputLine) {
+        CharStream input = CharStreams.fromString(inputLine);
+        GoobScraperLexer lexer = new GoobScraperLexer(input);
+        CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
+        GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
+        ParseTree tree = parser.program();
+        TestGoobScraperVisitor testGoobScraperVisitor = new TestGoobScraperVisitor();
+        testGoobScraperVisitor.visit(tree);
     }
 
 }

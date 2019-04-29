@@ -30,9 +30,9 @@ public class AutomaticUpdater {
         return files;
     }
 
-    private static Long matchTime(String text) {
+    public static Long matchTime(String text) {
         Long time = null;
-        Pattern intPattern = Pattern.compile("\\w+([0-9]+)");
+        Pattern intPattern = Pattern.compile("([0-9]+)");
         Matcher matcher = intPattern.matcher(text);
 
         for (int i = 0; i < matcher.groupCount(); i++) {
@@ -60,11 +60,13 @@ public class AutomaticUpdater {
 
     private static void extractAndRunUpdates(List<File> files, ScheduledExecutorService es) {
         for (File file : files) {
+            String text = null;
             try {
                 BufferedReader br = new BufferedReader(new FileReader(file));
-                String text;
-                while (!(text = br.readLine()).contains("update:")) {
+
+                while ((text = br.readLine()) != null && !(text.startsWith("update:"))) {
                 }
+                if (text == null) continue; // EOF has been reached
                 text = text.substring(7);
                 Long time = matchTime(text);
                 String updateType = matchType(text, null);
@@ -74,6 +76,7 @@ public class AutomaticUpdater {
                 addFileToExecutor(file, time, timeType, updateType, es);
                 System.out.println(text);
             } catch (Exception e) {
+                System.out.println(text);
                 e.printStackTrace();
             }
         }
