@@ -17,13 +17,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
+public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     private static Map<String,Variable> varMem = new HashMap<>();
     private static Variable lastVar;
 
 
     @Override
-    public Variable visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
+    public String visitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
         // the metadata of each file will be stored in a separate file with a MD.txt
         String fileName;
         if (ctx.word() == null ) {
@@ -37,7 +37,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         }
         String timeStr = ctx.time().getText();
         System.out.println(timeStr);
-        String updateType = ctx.update().getText();
+        String updateType = visit(ctx.getChild(1));
         File file;
         try {
             file = getFile(getMDFileName(fileName));
@@ -50,6 +50,14 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         System.out.println("updateType: ");
         return null;
     }
+
+    @Override
+    public String visitUpdateAppend(GoobScraperParser.UpdateAppendContext ctx) { return ctx.getText(); }
+
+
+    @Override
+    public String visitUpdateNew(GoobScraperParser.UpdateNewContext ctx) { return ctx.getText(); }
+
 
     private void updateMetaDataFile(String updateType, String updateTime, File file) throws IOException {
         System.out.println("updateMetaDataFile; file: " + file.getName());
@@ -130,7 +138,7 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
     }
     //ex. "/get table VAR" or "/get table";
     @Override
-    public Void visitGetTable(GoobScraperParser.GetTableContext ctx){
+    public String visitGetTable(GoobScraperParser.GetTableContext ctx){
         //TODO: instead of printing write to csv file for each table
         String html;
         Variable var;
@@ -140,15 +148,13 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         else {
             html = var.getText();
         }
-
+        StringBuilder contentTxt = new StringBuilder();
         try {
               // String urlTest = "https://www.w3schools.com/html/html_tables.asp";
              // String url = ctx.getChild(1).getText().replace("\"", "");
             // Document doc = Jsoup.connect(urlTest).get();
             Document doc = Jsoup.parse(html);
             Elements tables = doc.getElementsByTag("table");
-
-            StringBuilder contentTxt = new StringBuilder();
 
             for(Element table : tables){
                 Elements rows = table.select("tr");
@@ -180,12 +186,13 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         }
         var.addStep("/get table");
         lastVar = var;
-        return null;
+        return contentTxt.toString();
     }
 
     // ex. /get <any tag> <url>
     @Override
-    public Object visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
+    public String visitRegularGet(GoobScraperParser.RegularGetContext ctx) {
+        StringBuilder toReturn = new StringBuilder();
         try {
             String url = ctx.getChild(1).getText();
             String searchWord = ctx.getChild(0).getText();
@@ -201,19 +208,24 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             }
             //String bob  = elements.toString();
             System.out.println();
+            for (Element word : foundElements) {
+                System.out.println(word);
+                toReturn.append(word).append(",");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return visitChildren(ctx);
+        return toReturn.toString();
     }
 
     @Override
-    public Variable visitGetURL(GoobScraperParser.GetURLContext ctx) {
+    public String visitGetURL(GoobScraperParser.GetURLContext ctx) {
         //https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis
         URLConnection connection = null;
         try {
             String url = ctx.word().getText().replace("\"", "");
+            // String url = ctx.word().getText().replace("\"", "");
             connection = new URL(url).openConnection();
             InputStream response = connection.getInputStream();
             Scanner scanner = new Scanner(response);
@@ -223,23 +235,22 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
             varMem.put(lastVar.getName(), lastVar);
             lastVar.addStep("/get url " + ctx.word().getText());
             System.out.println("Visitor.Variable reference name: " + lastVar.getName());
-            return lastVar;
+            return lastVar.getName();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    /**
-     * Extracts the data to a new file creating the file in process
-     * ex. /extract new (variable)? file.extension;/r -> <EOF> -> <ctrl-D>
-     * @param ctx
-     * @return
-     */
+  //  @Override public String visitWordString(GoobScraperParser.WordStringContext ctx) { return String.valueOf(ctx); }
+
+//    @Override public Long visitWordNumber(GoobScraperParser.WordNumberContext ctx) { return Long.valueOf(ctx.NUMBER().getText()); }
+
+
     @Override
-    public Variable visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
+    public String visitExtractStatment(GoobScraperParser.ExtractStatmentContext ctx) {
         String file = "";
-        Variable var = null;
+        Variable var = lastVar;
         System.out.println("visitExtractNew; lastVar: " + lastVar.getName());
         int wordNum = ctx.word().size();
         if(wordNum == 1){
@@ -251,7 +262,14 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         }
 
         try {
-            FileWriter writer = new FileWriter(file.replace("\"",""),false);
+            FileWriter writer = null;
+            String typeUpdate = visit(ctx.getChild(1));
+            if (typeUpdate.equals("new"))
+                writer = new FileWriter(file.replace("\"",""),false);
+            else if (typeUpdate.equals("append"))
+                writer = new FileWriter(file.replace("\"",""),true);
+            else
+                throw new RuntimeException();
             //test example:
             //writer.append("ID");writer.append(',');writer.append("name");writer.append('\n');
             assert var != null;
@@ -301,44 +319,28 @@ public class TestGoobScraperVisitor<T> extends GoobScraperBaseVisitor {
         return null;
     }
 
+
+    /**
+     * Extracts the data to a new file creating the file in process
+     * ex. /extract new (variable)? file.extension;/r -> <EOF> -> <ctrl-D>
+     * @param ctx
+     * @return
+     */
     @Override
-    public Void visitExtractAppend(GoobScraperParser.ExtractAppendContext ctx) {
-        String file = "";
-        Variable var = null;
-        int wordNum = ctx.word().size();
-        if(wordNum == 1){
-            file = ctx.getChild(1).getText();
-            var = lastVar;
-        }else if(wordNum == 2){
-            var = varMem.get(ctx.getChild(1).getText());
-            file = ctx.getChild(2).getText();
-        }
-        try {
-            FileWriter writer = new FileWriter(file.replace("\"",""),true);
-            //test example:
-            writer.append("1");writer.append(',');writer.append("bob");writer.append('\n');
-
-            writer.flush();
-            writer.close();
-
-            if (var != null) {
-                var.addStep("/extract append " + file.replace("\"",""));
-                insertVarMetaDataFile(varMem.get(var), getFile(getMDFileName(file.replace("\"",""))));
-                var.setFileName(file);
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String visitExtractNew(GoobScraperParser.ExtractNewContext ctx) {
+        return "new";
     }
 
     @Override
-    public Void visitQuitStatment(GoobScraperParser.QuitStatmentContext ctx){
+    public String visitExtractAppend(GoobScraperParser.ExtractAppendContext ctx) {
+        return "append";
+    }
+
+    @Override
+    public String visitQuitStatment(GoobScraperParser.QuitStatmentContext ctx){
         System.out.println("Quitting");
         System.exit(0);
-        return null;
+        return "Quit";
     }
 
     private Variable getVar(GoobScraperParser.WordContext ctxWord) {

@@ -2,11 +2,11 @@ grammar GoobScraper;
 
 program: statment+;
 
-statment: '/get' get ';'                   #GetStatment
-        | '/extract' extract ';'           #ExtractStatment
-        | '/update' update word? time ';'  #UpdateStatment
-        | '/alert' alert time ';'          #AlertStatment
-        | '/quit' ';'                      #QuitStatment
+statment: '/get' get ';'                                #GetStatment
+        | '/extract' extract (word)? (word) ';'         #ExtractStatment
+        | '/update' update word? time ';'               #UpdateStatment
+        | '/alert' alert time ';'                       #AlertStatment
+        | '/quit' ';'                                   #QuitStatment
         ;
 
 get : (word) (word)?                     #RegularGet
@@ -14,8 +14,8 @@ get : (word) (word)?                     #RegularGet
     | ('tables' | 'table') (word)? #GetTable
     ;
 
-extract : 'append' (word)? (word)   #ExtractAppend
-        |  'new'  (word)? (word)    #ExtractNew
+extract : 'append'   #ExtractAppend
+        |  'new'     #ExtractNew
         ;
 
 update : 'append'   #UpdateAppend
