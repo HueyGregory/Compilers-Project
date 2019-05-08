@@ -1,12 +1,12 @@
 console.log("Begin");
-const antrl4 = require('antlr4');
+const antlr4 = require('antlr4');
 const GoobLexer = require('./lib/GoobScraperLexer').GoobScraperLexer;
 const GoobParser = require('./lib/GoobScraperParser').GoobScraperParser;
 
-const input = "";
-const chars = new antlr4.InputStream();
+const input = "test.txt";
+const chars = new antlr4.InputStream(input);
 const lexer = new GoobLexer(chars);
-const token = new antlr4.CommonTokenStream(lexer);
+const tokens = new antlr4.CommonTokenStream(lexer);
 const parser = new GoobParser(tokens);
 parser.buildParseTrees = true;
 // create parse tree of input
