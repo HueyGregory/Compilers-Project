@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Variable {
-    private String text;
-    private String url;
-    private String name;
-    private String fileName;
+    private String text, url, name, fileName, alertTime;
     private List<String> steps;
     private static AtomicInteger number = new AtomicInteger(0);
 
@@ -56,5 +53,13 @@ public class Variable {
     // only used by /extract
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getAlertTime() {
+        return alertTime;
+    }
+
+    public void setAlertTime(String alertTime) {
+        this.alertTime = alertTime;
     }
 }

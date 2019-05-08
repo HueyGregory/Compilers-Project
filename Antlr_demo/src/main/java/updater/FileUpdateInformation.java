@@ -94,11 +94,14 @@ public class FileUpdateInformation implements Runnable {
     private double updateTime;
     private TimeUnit timeType;
     private UpdateType updateType;
+    private boolean alert;
+    private
 
     FileUpdateInformation(File mdFile, double updateTime, TimeUnit timeType, String updateType) {
         this.mdFile = mdFile;
         this.updateTime = updateTime;
         this.timeType = timeType;
+
         switch(updateType) {
             case "append":
                 this.updateType = UpdateType.append;

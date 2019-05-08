@@ -126,16 +126,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         bw.close();
     }
 
-    private File getFile(String fileName) throws IOException {
-        File file = new File(fileName);
-        // find the variable in the file which will indicate whether to append, replace, or merge
-        if (!file.exists()) { file.createNewFile(); }
-        if (!file.canRead() || !file.canWrite()) {
-            file.delete();
-            file.createNewFile();
-        }
-        return file;
-    }
+
     //ex. "/get table VAR" or "/get table";
     @Override
     public String visitGetTable(GoobScraperParser.GetTableContext ctx){
@@ -251,7 +242,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     public String visitExtractStatment(GoobScraperParser.ExtractStatmentContext ctx) {
         String file = "";
         Variable var = lastVar;
-        System.out.println("visitExtractNew; lastVar: " + lastVar.getName());
+        System.out.println("visitExtractStatment; lastVar: " + lastVar.getName());
         int wordNum = ctx.word().size();
         if(wordNum == 1){
             file = ctx.getChild(1).getText();
@@ -336,6 +327,46 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         return "append";
     }
 
+    @Override public String visitAlertStatment(GoobScraperParser.AlertStatmentContext ctx) {
+        String toAppend = "\nalert: " + ctx.time().getText();
+        try {
+            File file = getFile(getMDFileName(visit(ctx.getChild(1))));
+            FileWriter writer = new FileWriter(file,true);
+
+            writer.append(toAppend);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        lastVar.setAlertTime(ctx.time().getText());
+        return toAppend;
+    }
+
+
+    @Override public String visitAlertWord(GoobScraperParser.AlertWordContext ctx) {
+        Variable var = varMem.get(ctx.getChild(1).getText());
+        if (var != null) {
+            lastVar = var;
+            return var.getFileName();
+        }
+        else {
+            String fileName = ctx.getChild(1).getText();
+            return fileName;
+        }
+
+    }
+
+    @Override public String visitAlertEmpty(GoobScraperParser.AlertEmptyContext ctx) {
+        Variable var = lastVar;
+        if (var != null)
+            return var.getFileName();
+        else
+            throw new RuntimeException();
+    }
+
+
     @Override
     public String visitQuitStatment(GoobScraperParser.QuitStatmentContext ctx){
         System.out.println("Quitting");
@@ -357,6 +388,16 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         return fileName + "_MD.txt";
     }
 
+    private File getFile(String fileName) throws IOException {
+        File file = new File(fileName);
+        // find the variable in the file which will indicate whether to append, replace, or merge
+        if (!file.exists()) { file.createNewFile(); }
+        if (!file.canRead() || !file.canWrite()) {
+            file.delete();
+            file.createNewFile();
+        }
+        return file;
+    }
 
     public static void main(String[] args){
         while (true) {
