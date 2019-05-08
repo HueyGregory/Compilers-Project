@@ -1,5 +1,6 @@
+import Visitor.GoobScraperLexer;
+import Visitor.GoobScraperParser;
 import org.junit.Test;
-import org.junit.Before;
 
 import java.io.IOException;
 

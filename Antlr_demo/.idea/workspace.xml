@@ -1,60 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f34780e5-ae09-43cd-b776-8809551f72a5" name="Default" comment="merged the two versions">
-      <change afterPath="$PROJECT_DIR$/.idea/Antlr_demo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__Arquillian_JUnit_Release.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AutomaticUpdates/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AutomaticUpdates/program_startup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f34780e5-ae09-43cd-b776-8809551f72a5" name="Default" comment="added extract append">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__Arquillian_JUnit_Release.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraper.interp" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraper.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraper.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraper.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/GoobScraperVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/GoobScraperVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomaticUpdates/Update.py" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomaticUpdates/Update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraper.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraper.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/GoobScraperVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Visitor/GetVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Visitor/TestGoobScraperVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/updater/FileUpdateInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/updater/FileUpdateInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GoobScraperTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GoobScraperTester.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/antlr4$TestGoobScraperVisitor.ic" NAME="TestGoobScraperVisitor Coverage Results" MODIFIED="1553134316465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/antlr4$GetVisitor.ic" NAME="GetVisitor Coverage Results" MODIFIED="1553023872850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-  </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="antlr4" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4">
+      <file leaf-file-name="GoobScraperTester.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/GoobScraperTester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GetVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="168">
+              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,75 +46,30 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1615">
-              <caret line="95" column="78" selection-start-line="95" selection-start-column="78" selection-end-line="95" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4624">
-              <caret line="333" column="36" selection-start-line="333" selection-start-column="36" selection-end-line="333" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/updater/AutomaticUpdater.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="98" column="52" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="FileUpdateInformation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/updater/FileUpdateInformation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="36">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#104#105#0" expanded="true" />
-                <element signature="e#131#132#0" expanded="true" />
-                <element signature="e#172#173#0" expanded="true" />
-                <element signature="e#205#206#0" expanded="true" />
-                <element signature="e#384#385#0" expanded="true" />
-                <element signature="e#415#416#0" expanded="true" />
-                <element signature="e#465#466#0" expanded="true" />
-                <element signature="e#505#506#0" expanded="true" />
-                <element signature="e#542#543#0" expanded="true" />
-                <element signature="e#575#576#0" expanded="true" />
-                <element signature="e#627#628#0" expanded="true" />
-                <element signature="e#671#672#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app_MD.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asdf_MD.txt">
+      <file leaf-file-name="AutomaticUpdater.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/updater/AutomaticUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="21" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="21" />
+            <state relative-caret-position="288">
+              <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoobScraper.g4" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Visitor/GoobScraper.g4">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -138,10 +77,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Arquillian JUnit Test Class" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>visitWOrd</find>
+      <find>&lt;table</find>
+      <find>fromStream</find>
+      <find>visit</find>
+      <find>getChild</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -150,22 +97,29 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/MyListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/input.txt" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GetVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GoobScraperVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/Variables.java" />
-        <option value="$PROJECT_DIR$/src/main/java/TestGoobScraperVisitorTest.java" />
-        <option value="$PROJECT_DIR$/src/main/test/TestGoobScraperVisitorTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Variable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/AutomaticUpdater.java" />
+        <option value="$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java" />
+        <option value="$PROJECT_DIR$/file.csv" />
         <option value="$PROJECT_DIR$/src/main/java/GoobScraper.g4" />
+        <option value="$PROJECT_DIR$/src/main/java/Variable.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/input.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/updater/FileUpdateInformation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/updater/AutomaticUpdater.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Visitor/TestGoobScraperVisitor.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GoobScraperTester.java" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -190,10 +144,14 @@
       <select />
     </treeState>
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-16" />
-    <option name="width" value="856" />
-    <option name="height" value="788" />
+    <option name="y" value="-16" />
+    <option name="width" value="1632" />
+    <option name="height" value="1152" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -201,7 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -240,53 +197,158 @@
               <item name="Antlr_demo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Visitor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="antlr4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Antlr_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="antlr4" type="b2602c69:ProjectViewProjectNode" />
               <item name="Antlr_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="antlr4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Antlr_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553717414604" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
-    <property name="create.test.in.the.same.root" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552518357383" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\yaeav\Documents\YU\YU Classes\Spring 2019\Compiler\Git Repository\Compilers-Project\Antlr_demo\src\main\test" />
+      <recent name="$PROJECT_DIR$/src/test/java" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Visitor/GoobScraper.g4</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Visitor/TestGoobScraperVisitor.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Visitor/ListenerTestGoobScraper.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -300,87 +362,107 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AutomaticUpdater (1)">
-    <configuration name="AutomaticUpdater (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="updater.AutomaticUpdater" />
+  <component name="RunManager" selected="Application.TestGoobScraperVisitor (1)">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Antlr_demo" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="TestGoobScraperVisitor (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Visitor.TestGoobScraperVisitor" />
+      <module name="antlr4" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="updater.*" />
+          <option name="PATTERN" value="Visitor.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AutomaticUpdater" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="AutomaticUpdater" />
-      <module name="Antlr_demo" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GetVisitor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GetVisitor" />
-      <module name="antlr4" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="TestGoobScraperVisitor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
       <option name="MAIN_CLASS_NAME" value="TestGoobScraperVisitor" />
-      <module name="Antlr_demo" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <module name="antlr4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestGoobScraperVisitorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Antlr_demo" />
+    <configuration name="GoobScraperTester.testExtarctNew" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="antlr4" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGoobScraperVisitorTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="GoobScraperTester" />
+      <option name="METHOD_NAME" value="testExtarctNew" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
-      <method v="2">
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.TestGoobScraperVisitor" />
+      <item itemvalue="JUnit.GoobScraperTester.testExtarctNew" />
+      <item itemvalue="Application.TestGoobScraperVisitor (1)" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AutomaticUpdater (1)" />
-        <item itemvalue="Application.AutomaticUpdater" />
+        <item itemvalue="Application.TestGoobScraperVisitor (1)" />
         <item itemvalue="Application.TestGoobScraperVisitor" />
-        <item itemvalue="JUnit.TestGoobScraperVisitorTest" />
-        <item itemvalue="Application.GetVisitor" />
+        <item itemvalue="JUnit.GoobScraperTester.testExtarctNew" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -404,26 +486,25 @@
       <workItem from="1552197217238" duration="3627000" />
       <workItem from="1552335536108" duration="3299000" />
       <workItem from="1552506425186" duration="32000" />
-      <workItem from="1552514078465" duration="4534000" />
-      <workItem from="1552592125568" duration="3044000" />
-      <workItem from="1552962048488" duration="4154000" />
-      <workItem from="1553022316613" duration="586000" />
-      <workItem from="1553023026947" duration="769000" />
-      <workItem from="1553024892012" duration="3032000" />
-      <workItem from="1553120596775" duration="17187000" />
-      <workItem from="1553540197500" duration="8168000" />
-      <workItem from="1553627192627" duration="3583000" />
-      <workItem from="1553631078077" duration="11000" />
-      <workItem from="1553716969887" duration="437000" />
-      <workItem from="1554149553563" duration="121000" />
-      <workItem from="1554153961976" duration="1289000" />
-      <workItem from="1554232999294" duration="1131000" />
-      <workItem from="1554235288799" duration="93000" />
-      <workItem from="1554433729731" duration="23000" />
-      <workItem from="1554694946480" duration="302000" />
-      <workItem from="1554698637594" duration="7581000" />
-      <workItem from="1554752426815" duration="4726000" />
-      <workItem from="1555267103321" duration="11839000" />
+      <workItem from="1552514078465" duration="3682000" />
+      <workItem from="1552519214476" duration="14000" />
+      <workItem from="1552591803568" duration="3052000" />
+      <workItem from="1552937058607" duration="3101000" />
+      <workItem from="1552941947615" duration="101000" />
+      <workItem from="1552945726695" duration="3800000" />
+      <workItem from="1553017083742" duration="3103000" />
+      <workItem from="1553023618725" duration="529000" />
+      <workItem from="1553024268192" duration="2855000" />
+      <workItem from="1553541089363" duration="3580000" />
+      <workItem from="1553626975442" duration="4053000" />
+      <workItem from="1553717699054" duration="311000" />
+      <workItem from="1554231681066" duration="4324000" />
+      <workItem from="1554742990249" duration="9886000" />
+      <workItem from="1554836972059" duration="2872000" />
+      <workItem from="1556564711960" duration="2707000" />
+      <workItem from="1556824555035" duration="155000" />
+      <workItem from="1556828227275" duration="8000" />
+      <workItem from="1557342691131" duration="188000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff added">
       <created>1552014244390</created>
@@ -495,103 +576,151 @@
       <option name="project" value="LOCAL" />
       <updated>1552517344390</updated>
     </task>
-    <task id="LOCAL-00011" summary="fixed up the syntax">
-      <created>1552518207221</created>
+    <task id="LOCAL-00011" summary="added test visitor class">
+      <created>1552594494051</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1552518207221</updated>
+      <updated>1552594494051</updated>
     </task>
-    <task id="LOCAL-00012" summary="fixed up the syntax">
-      <created>1552518374682</created>
+    <task id="LOCAL-00012" summary="updated word visitor">
+      <created>1552939414161</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1552518374682</updated>
+      <updated>1552939414161</updated>
     </task>
-    <task id="LOCAL-00013" summary="fixed up the syntax">
-      <created>1552518383112</created>
+    <task id="LOCAL-00013" summary="updated goob g4 file">
+      <created>1552942038833</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1552518383112</updated>
+      <updated>1552942038833</updated>
     </task>
-    <task id="LOCAL-00014" summary="updated the syntax and overrided some of the methods">
-      <created>1552594779755</created>
+    <task id="LOCAL-00014" summary="added variable class">
+      <created>1552946714610</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1552594779755</updated>
+      <updated>1552946714610</updated>
     </task>
-    <task id="LOCAL-00015" summary="started the update method">
-      <created>1553024988673</created>
+    <task id="LOCAL-00015" summary="updated /extract new">
+      <created>1552948632021</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1553024988673</updated>
+      <updated>1552948632021</updated>
     </task>
-    <task id="LOCAL-00016" summary="started update method">
-      <created>1553026845278</created>
+    <task id="LOCAL-00016" summary="removed get visitor">
+      <created>1553021734402</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1553026845278</updated>
+      <updated>1553021734402</updated>
     </task>
-    <task id="LOCAL-00017" summary="finished the update method; Having some trouble in the main method with the reader closing and won't refresh. Have a great Shabbos!">
-      <created>1553282469605</created>
+    <task id="LOCAL-00017" summary="added extract new to create a file">
+      <created>1553024368260</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1553282469605</updated>
+      <updated>1553024368260</updated>
     </task>
-    <task id="LOCAL-00018" summary="More changes">
-      <created>1553544440570</created>
+    <task id="LOCAL-00018" summary="updated extract new">
+      <created>1553025026769</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1553544440570</updated>
+      <updated>1553025026769</updated>
     </task>
-    <task id="LOCAL-00019" summary="Fixed Variable class">
-      <created>1553628732228</created>
+    <task id="LOCAL-00019" summary="added extract append">
+      <created>1553027109695</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1553628732228</updated>
+      <updated>1553027109695</updated>
     </task>
-    <task id="LOCAL-00020" summary="merged the two versions">
-      <created>1554234035135</created>
+    <task id="LOCAL-00020" summary="fixed infinite loop for REPL">
+      <created>1553542349965</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1554234035135</updated>
+      <updated>1553542349966</updated>
     </task>
-    <task id="LOCAL-00021" summary="fixed variable and started automatic updating. Please work on writing&#10;table to file and regular get.">
-      <created>1554742321808</created>
+    <task id="LOCAL-00021" summary="added /quit statement">
+      <created>1553627655288</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1554742321808</updated>
+      <updated>1553627655288</updated>
     </task>
-    <task id="LOCAL-00022" summary="added Executor to updater">
-      <created>1555336992243</created>
+    <task id="LOCAL-00022" summary="added jsoup html parser to pom file">
+      <created>1553629815592</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1555336992244</updated>
+      <updated>1553629815592</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="jsoup">
+      <created>1554233320730</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1554233320730</updated>
+    </task>
+    <task id="LOCAL-00024" summary="updated get url">
+      <created>1554233857958</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1554233857958</updated>
+    </task>
+    <task id="LOCAL-00025" summary="updated visit get table to parse table into csv file">
+      <created>1554235769364</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1554235769364</updated>
+    </task>
+    <task id="LOCAL-00026" summary="updated regular /get to get data from site.">
+      <created>1554748034303</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1554748034303</updated>
+    </task>
+    <task id="LOCAL-00027" summary="updated extract new">
+      <created>1554755459464</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1554755459464</updated>
+    </task>
+    <task id="LOCAL-00028" summary="added junit test and test in testGoob main visitor class">
+      <created>1554840174709</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1554840174709</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestGoobScraperVisitorTest - 2019.04.08 at 12h 19m 28s.xml">
-      <configuration name="TestGoobScraperVisitorTest" configurationId="JUnit" />
+    <history-entry file="GoobScraperTester_testExtarctNew - 2019.04.09 at 15h 42m 30s.xml">
+      <configuration name="GoobScraperTester.testExtarctNew" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestGoobScraperVisitorTest - 2019.04.08 at 12h 19m 53s.xml">
-      <configuration name="TestGoobScraperVisitorTest" configurationId="JUnit" />
+    <history-entry file="GoobScraperTester_testExtarctNew - 2019.04.09 at 15h 42m 47s.xml">
+      <configuration name="GoobScraperTester.testExtarctNew" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GoobScraperTester_testExtarctNew - 2019.04.09 at 15h 44m 10s.xml">
+      <configuration name="GoobScraperTester.testExtarctNew" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GoobScraperTester_testExtarctNew - 2019.04.09 at 15h 45m 50s.xml">
+      <configuration name="GoobScraperTester.testExtarctNew" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91269000" />
+    <option name="totallyTimeSpent" value="67030000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -603,94 +732,155 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7466216" visible="true" weight="0.15279879" />
-      <window_info id="Structure" order="1" sideWeight="0.2533784" side_tool="true" visible="true" weight="0.15279879" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="5" sideWeight="0.50530034" side_tool="true" weight="0.22768533" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32733223" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5155483" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32871974" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.1816694" />
-      <window_info anchor="bottom" id="Tool Output" order="8" weight="0.32569557" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289689" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="12" weight="0.3797054" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32569557" />
-      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32871974" />
+      <window_info anchor="bottom" id="Tool Output" order="8" weight="0.32569557" />
+      <window_info anchor="right" id="Codota" order="9" weight="0.32954547" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007576" side_tool="true" weight="0.5642361" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" weight="0.5642361" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.18055555" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.2030303" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="12" weight="0.3797054" />
+      <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.22768533" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Codota" order="9" />
+      <window_info id="Favorites" order="5" sideWeight="0.50530034" side_tool="true" weight="0.22768533" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4982639" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.328125" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Maven" order="10" />
-      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.32980332" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.328125" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="more stuff added" />
     <MESSAGE value="updated to allow string input" />
     <MESSAGE value="put in alert and another get statment" />
-    <MESSAGE value="fixed up the syntax" />
-    <MESSAGE value="updated the syntax and overrided some of the methods" />
-    <MESSAGE value="started the update method" />
-    <MESSAGE value="started update method" />
-    <MESSAGE value="finished the update method; Having some trouble in the main method with the reader closing and won't refresh. Have a great Shabbos!" />
-    <MESSAGE value="More changes" />
-    <MESSAGE value="Fixed Variable class" />
-    <MESSAGE value="merged the two versions" />
-    <MESSAGE value="fixed variable and started automatic updating. Please work on writing&#10;table to file and regular get." />
-    <MESSAGE value="added Executor to updater" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Executor to updater" />
+    <MESSAGE value="added test visitor class" />
+    <MESSAGE value="updated word visitor" />
+    <MESSAGE value="updated goob g4 file" />
+    <MESSAGE value="added variable class" />
+    <MESSAGE value="updated /extract new" />
+    <MESSAGE value="removed get visitor" />
+    <MESSAGE value="added extract new to create a file" />
+    <MESSAGE value="added extract append" />
+    <MESSAGE value="fixed infinite loop for REPL" />
+    <MESSAGE value="added /quit statement" />
+    <MESSAGE value="added jsoup html parser to pom file" />
+    <MESSAGE value="jsoup" />
+    <MESSAGE value="updated get url" />
+    <MESSAGE value="updated visit get table to parse table into csv file" />
+    <MESSAGE value="updated regular /get to get data from site." />
+    <MESSAGE value="updated extract new" />
+    <MESSAGE value="added junit test and test in testGoob main visitor class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added junit test and test in testGoob main visitor class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java</url>
-          <line>194</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java</url>
-          <line>109</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/updater/AutomaticUpdater.java</url>
-          <line>70</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-      </breakpoints>
+      <option name="time" value="46" />
     </breakpoint-manager>
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>file</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2-sources.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/input.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2-sources.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/input.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/input.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/input.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4" />
     <entry file="file://$PROJECT_DIR$/gen/GoobScraperLexer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Expr.g4" />
     <entry file="file://$PROJECT_DIR$/src/main/java/GYOOParser.java" />
@@ -698,171 +888,116 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/MyListener.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/GYOOLexer.tokens" />
     <entry file="file://$PROJECT_DIR$/src/main/java/GYOOLexer.interp" />
-    <entry file="file://$PROJECT_DIR$/gen/GoobScraperBaseListener.java" />
-    <entry file="file://$PROJECT_DIR$/gen/GoobScraperVisitor.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Variables.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2-sources.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        <state relative-caret-position="234">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/ParserRuleContext.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GetVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java" />
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/io/BufferedReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="54" column="125" selection-start-line="54" selection-start-column="125" selection-end-line="54" selection-end-column="125" />
+        <state relative-caret-position="183">
+          <caret line="114" column="11" selection-start-line="114" selection-start-column="11" selection-end-line="114" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2-sources.jar!/org/antlr/v4/runtime/CharStreams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-106">
+          <caret line="126" column="39" selection-start-line="126" selection-start-column="29" selection-end-line="126" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/System.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen/GoobScraperParser.java">
+    <entry file="file://$PROJECT_DIR$/file.csv" />
+    <entry file="file://$PROJECT_DIR$/gen/GoobScraperVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/gen/GoobScraperParser.java" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="208" column="25" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
-          <folding>
-            <element signature="e#6109#6110#0" expanded="true" />
-            <element signature="e#6162#6163#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="630">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/io/File.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Variable.java" />
+    <entry file="file://$PROJECT_DIR$/ex.csv_MD.txt" />
+    <entry file="file://$PROJECT_DIR$/ex.csv" />
+    <entry file="file://$PROJECT_DIR$/test.csv_MD.txt" />
+    <entry file="file://$PROJECT_DIR$/test.csv" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/input.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="148" column="13" selection-start-line="148" selection-start-column="13" selection-end-line="148" selection-end-column="13" />
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/CharStream.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+        <state relative-caret-position="68">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/CharStreams.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/runners/ParentRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="29" column="124" selection-start-line="29" selection-start-column="124" selection-end-line="29" selection-end-column="124" />
+        <state relative-caret-position="6">
+          <caret line="273" selection-start-line="273" selection-end-line="273" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/io/FileWriter.java">
+    <entry file="file://$PROJECT_DIR$/testTable.csv_MD.txt" />
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
+        <state relative-caret-position="357">
+          <caret line="1966" selection-start-line="1966" selection-end-line="1966" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/file.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/TestGoobScraperVisitorTest.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar!/org/jsoup/nodes/Document.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GetVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gen/GoobScraperBaseVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="95" column="78" selection-start-line="95" selection-start-column="78" selection-end-line="95" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4624">
-          <caret line="333" column="36" selection-start-line="333" selection-start-column="36" selection-end-line="333" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_MD.txt">
+    <entry file="file://$PROJECT_DIR$/testTable.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/TestGoobScraperVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Visitor/GetVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Visitor/GoobScraper.g4">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/input.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asdf_MD.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Variable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GoobScraper.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/GoobScraperBaseListener.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/updater/FileUpdateInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#104#105#0" expanded="true" />
-            <element signature="e#131#132#0" expanded="true" />
-            <element signature="e#172#173#0" expanded="true" />
-            <element signature="e#205#206#0" expanded="true" />
-            <element signature="e#384#385#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#465#466#0" expanded="true" />
-            <element signature="e#505#506#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#671#672#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/updater/AutomaticUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="98" column="52" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
+        <state relative-caret-position="288">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Visitor/TestGoobScraperVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="356" column="43" lean-forward="true" selection-start-line="356" selection-start-column="43" selection-end-line="356" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GoobScraperTester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

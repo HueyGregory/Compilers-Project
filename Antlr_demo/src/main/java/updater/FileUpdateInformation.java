@@ -1,22 +1,11 @@
 package updater;
 
-import Visitor.GoobScraperLexer;
-import Visitor.GoobScraperParser;
-import Visitor.TestGoobScraperVisitor;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.jboss.arquillian.test.spi.event.suite.Test;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static updater.AutomaticUpdater.matchTime;
 
 public class FileUpdateInformation implements Runnable {
 
