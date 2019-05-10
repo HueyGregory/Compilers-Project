@@ -60,20 +60,33 @@ public class AutomaticUpdater {
 
     private static void extractAndRunUpdates(List<File> files, ScheduledExecutorService es) {
         for (File file : files) {
+            Long time = null;
+            String updateType = null;
+            String strTimeType = null;
+            TimeUnit timeType = null;
             String text = null;
+            boolean alert = false;
+            long hash = 0L;
             try {
                 BufferedReader br = new BufferedReader(new FileReader(file));
-
-                while ((text = br.readLine()) != null && !(text.startsWith("update:"))) {
+                while ((text = br.readLine()) != null) {
+                    if (!(text.startsWith("update:")) && (!(text.startsWith("alert:"))) && (!(text.startsWith("hash:"))) ) {
+                        continue;
+                    }
+                    if (text.startsWith("update:")) {
+                        text = text.substring(7);
+                        time = matchTime(text);
+                        updateType = matchType(text, null);
+                        strTimeType = matchType(text, updateType);
+                        timeType = getTimeType(strTimeType);
+                    } else if (text.startsWith("alert:")) {
+                        alert = getAlert(text.substring(6));
+                    } else if (text.startsWith("hash:")){
+                        hash = getHash(text.substring(5));
+                    }
                 }
-                if (text == null) continue; // EOF has been reached
-                text = text.substring(7);
-                Long time = matchTime(text);
-                String updateType = matchType(text, null);
-                String strTimeType = matchType(text, updateType);
-                TimeUnit timeType = getTimeType(strTimeType);
                 if (time == null || strTimeType == null || timeType == null || updateType == null) continue;
-                addFileToExecutor(file, time, timeType, updateType, es);
+                addFileToExecutor(file, time, timeType, updateType, alert, hash, es);
                 System.out.println(text);
             } catch (Exception e) {
                 System.out.println(text);
@@ -82,8 +95,23 @@ public class AutomaticUpdater {
         }
     }
 
-    private static void addFileToExecutor(File file, Long time, TimeUnit timeType, String updateType, ScheduledExecutorService es) {
-        es.scheduleWithFixedDelay(new FileUpdateInformation(file, time, timeType, updateType), time, time, timeType);
+    private static long getHash(String hashString) {
+        try {
+            return Long.valueOf(hashString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0L;
+        }
+    }
+
+    private static boolean getAlert(String alert) {
+        if (alert.equals("true") || alert.equals("yes"))
+            return true;
+        return false;
+    }
+
+    private static void addFileToExecutor(File file, Long time, TimeUnit timeType, String updateType, boolean alert, long hash, ScheduledExecutorService es) {
+        es.scheduleWithFixedDelay(new FileUpdateInformation(file, time, timeType, updateType, alert, hash), time, time, timeType);
     }
 
     private static TimeUnit getTimeType(String numStr) {

@@ -1,5 +1,7 @@
 package updater;
 
+import Visitor.TestGoobScraperVisitor;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -30,9 +32,31 @@ public class FileUpdateInformation implements Runnable {
                 if (!step.endsWith(";")) step += ";";
                 TestGoobScraperVisitor.parseAndRunLine(step);
             }
+            if (extractNewHash(this.mdFile) != hash) {
+                alertUser();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private long extractNewHash(File mdFile) {
+        try {
+            String text;
+            BufferedReader br = new BufferedReader(new FileReader(mdFile));
+            while ((text = br.readLine()) != null && !(text.equals("hash:"))) {
+                return Long.valueOf(text.substring(5));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+        return 0L;
+    }
+
+    private void alertUser() {
+        System.out.println("Alert User");
+        // NEED TO DO
     }
 
     private List<String> extractSteps(File mdFile) {
@@ -55,26 +79,6 @@ public class FileUpdateInformation implements Runnable {
 
     }
 
-    public UpdateType getUpdateType() {
-        return updateType;
-    }
-
-    public TimeUnit getTimeType() {
-        return timeType;
-    }
-
-    public void setTimeType(TimeUnit timeType) {
-        this.timeType = timeType;
-    }
-
-    public double getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(double updateTime) {
-        this.updateTime = updateTime;
-    }
-
     enum UpdateType {
         append, replace
     }
@@ -84,12 +88,14 @@ public class FileUpdateInformation implements Runnable {
     private TimeUnit timeType;
     private UpdateType updateType;
     private boolean alert;
-    private
+    private long hash;
 
-    FileUpdateInformation(File mdFile, double updateTime, TimeUnit timeType, String updateType) {
+    FileUpdateInformation(File mdFile, double updateTime, TimeUnit timeType, String updateType, boolean alert, long hash) {
         this.mdFile = mdFile;
         this.updateTime = updateTime;
         this.timeType = timeType;
+        this.alert = alert;
+        this.hash = hash;
 
         switch(updateType) {
             case "append":

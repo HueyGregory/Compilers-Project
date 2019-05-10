@@ -233,11 +233,6 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         return null;
     }
 
-  //  @Override public String visitWordString(GoobScraperParser.WordStringContext ctx) { return String.valueOf(ctx); }
-
-//    @Override public Long visitWordNumber(GoobScraperParser.WordNumberContext ctx) { return Long.valueOf(ctx.NUMBER().getText()); }
-
-
     @Override
     public String visitExtractStatment(GoobScraperParser.ExtractStatmentContext ctx) {
         String file = "";
