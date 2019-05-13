@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Variable {
-    private String text, url, name, fileName, alertTime;
+    private String text, url, name, fileName;
+    private boolean alert;
     private List<String> steps;
     private static AtomicInteger number = new AtomicInteger(0);
 
@@ -55,11 +56,11 @@ public class Variable {
         this.fileName = fileName;
     }
 
-    public String getAlertTime() {
-        return alertTime;
+    public boolean getAlert() {
+        return alert;
     }
 
-    public void setAlertTime(String alertTime) {
-        this.alertTime = alertTime;
+    public void setAlert(boolean alert) {
+        this.alert = alert;
     }
 }

@@ -2,6 +2,7 @@ package updater;
 
 import Visitor.TestGoobScraperVisitor;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -55,8 +56,23 @@ public class FileUpdateInformation implements Runnable {
     }
 
     private void alertUser() {
+       // From: https://stackoverflow.com/questions/34490218/how-to-make-a-windows-notification-in-java
         System.out.println("Alert User");
-        // NEED TO DO
+        SystemTray tray = SystemTray.getSystemTray();
+
+        Image image = Toolkit.getDefaultToolkit().createImage("Red_Alert.jpg");
+        TrayIcon trayIcon = new TrayIcon(image, "Alert Notification");
+        trayIcon.setImageAutoSize(true);
+        trayIcon.setToolTip("Alert Notification For Changes");
+        try {
+            tray.add(trayIcon);
+        } catch (AWTException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+
+        trayIcon.displayMessage("Changes have occurred", "See files", TrayIcon.MessageType.INFO);
+
     }
 
     private List<String> extractSteps(File mdFile) {

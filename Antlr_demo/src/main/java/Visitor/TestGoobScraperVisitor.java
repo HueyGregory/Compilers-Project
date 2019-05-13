@@ -29,8 +29,8 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         if (ctx.word() == null ) {
             fileName = lastVar.getFileName();
         }
-        else if (Files.exists(Paths.get(ctx.word().getText()))) {
-            fileName = ctx.word().getText();
+        else if (Files.exists(Paths.get(ctx.word().getText().replace("\"", "")))) {
+            fileName = ctx.word().getText().replace("\"", "");
         }
         else {
             fileName = getVar(ctx.word()).getFileName();
@@ -47,7 +47,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
             throw new RuntimeException();
         }
 
-        System.out.println("updateType: ");
+        System.out.println("End of update");
         return null;
     }
 
@@ -83,7 +83,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         System.out.println("insertVarMetaDataFile: updateAppendType; file: " + file.getName());
         // From https://stackoverflow.com/questions/20753600/creating-writing-and-editing-same-text-file-in-java
         String line;
-        boolean hadURL = false, hadSteps = false, readingSteps = false;
+        boolean hadURL = false, hadSteps = false, readingSteps = false, hadHash = false;
         StringBuilder content = new StringBuilder();
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
@@ -107,6 +107,11 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
                 }
                 content.append("End Steps").append("\n\n");
             }
+            else if (line.startsWith("hash:")) {
+                if (hadHash) continue;
+                content.append("\n").append("hash: ").append(var.getText().hashCode()).append("\n");
+
+            }
 
             else content.append(line).append("\n");
         }
@@ -118,6 +123,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
             }
             content.append("End Steps").append("\n\n");
         }
+        if (!hadHash) content.append("\n").append("hash: ").append(var.getText().hashCode()).append("\n");
         br.close();
         if (!content.toString().contains(theLine)) content.append(theLine);
         FileWriter fw = new FileWriter(file);
@@ -240,11 +246,11 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         System.out.println("visitExtractStatment; lastVar: " + lastVar.getName());
         int wordNum = ctx.word().size();
         if(wordNum == 1){
-            file = ctx.getChild(1).getText();
-            var = lastVar;
-        }else if(wordNum == 2){
-            var = varMem.get(ctx.getChild(1).getText());
             file = ctx.getChild(2).getText();
+        }else if(wordNum == 2){
+            var = varMem.get(ctx.getChild(2).getText());
+            if (var == null) var = lastVar;
+            file = ctx.getChild(3).getText();
         }
 
         try {
@@ -323,7 +329,8 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     }
 
     @Override public String visitAlertStatment(GoobScraperParser.AlertStatmentContext ctx) {
-        String toAppend = "\nalert: " + ctx.time().getText();
+        System.out.println("Beginning of alert");
+        String toAppend = "\nalert ";
         try {
             File file = getFile(getMDFileName(visit(ctx.getChild(1))));
             FileWriter writer = new FileWriter(file,true);
@@ -335,13 +342,14 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
             e.printStackTrace();
             return null;
         }
-        lastVar.setAlertTime(ctx.time().getText());
+        lastVar.setAlert(true);
+        System.out.println("End of alert");
         return toAppend;
     }
 
 
     @Override public String visitAlertWord(GoobScraperParser.AlertWordContext ctx) {
-        Variable var = varMem.get(ctx.getChild(1).getText());
+        Variable var = varMem.get(visit(ctx.getChild(1)));
         if (var != null) {
             lastVar = var;
             return var.getFileName();
@@ -380,12 +388,14 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     }
 
     private static String getMDFileName(String fileName) {
+
+        String[] fileSplit = fileName.split("\\.");
+        fileName = fileSplit[0];
         return fileName + "_MD.txt";
     }
 
     private File getFile(String fileName) throws IOException {
-        File file = new File(fileName);
-        // find the variable in the file which will indicate whether to append, replace, or merge
+        File file = new File(fileName.replace("\"", ""));
         if (!file.exists()) { file.createNewFile(); }
         if (!file.canRead() || !file.canWrite()) {
             file.delete();
@@ -395,6 +405,32 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     }
 
     public static void main(String[] args){
+        System.out.println("Begin");
+     //   readFromCMD();
+        File dir = new File(".");
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            System.out.println(file.getName());
+        }
+        readFromFile("testInput.txt");
+
+        System.out.println("Finished");
+    }
+
+    private static void readFromFile(String fileName) {
+        File file = new File(fileName);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while(sc.hasNextLine()) {
+            parseAndRunLine(sc.nextLine());
+        }
+    }
+
+    private static void readFromCMD() {
         while (true) {
             System.out.print("~$: ");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -406,7 +442,6 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
             }
             parseAndRunLine(inputLine);
         }
-
     }
 
     public static void parseAndRunLine(String inputLine) {

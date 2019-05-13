@@ -5,7 +5,7 @@ program: statment+;
 statment: '/get' get ';'                                #GetStatment
         | '/extract' extract (word)? (word) ';'         #ExtractStatment
         | '/update' update word? time ';'               #UpdateStatment
-        | '/alert' alert time ';'                       #AlertStatment
+        | '/alert' alert ';'                       #AlertStatment
         | '/quit' ';'                                   #QuitStatment
         ;
 
