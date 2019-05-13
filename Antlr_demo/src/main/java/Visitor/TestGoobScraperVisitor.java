@@ -110,7 +110,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
             else if (line.startsWith("hash:")) {
                 if (hadHash) continue;
                 content.append("\n").append("hash: ").append(var.getText().hashCode()).append("\n");
-
+                hadHash = true;
             }
 
             else content.append(line).append("\n");
@@ -330,12 +330,17 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
 
     @Override public String visitAlertStatment(GoobScraperParser.AlertStatmentContext ctx) {
         System.out.println("Beginning of alert");
-        String toAppend = "\nalert ";
         try {
-            File file = getFile(getMDFileName(visit(ctx.getChild(1))));
-            FileWriter writer = new FileWriter(file,true);
-
-            writer.append(toAppend);
+            File mdFile = getFile(getMDFileName(visit(ctx.getChild(1))));
+            BufferedReader br = new BufferedReader(new FileReader(mdFile));
+            String text;
+            StringBuilder strBuild = new StringBuilder();
+            while ((text = br.readLine()) != null) {
+                if (!text.startsWith("alert")) strBuild.append(text).append("\n");
+            }
+            strBuild.append("\n").append("alert").append("\n");
+            FileWriter writer = new FileWriter(mdFile,false);
+            writer.write(strBuild.toString());
             writer.flush();
             writer.close();
         } catch (IOException e) {
@@ -344,7 +349,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
         }
         lastVar.setAlert(true);
         System.out.println("End of alert");
-        return toAppend;
+        return "ALERT: TRUE";
     }
 
 
@@ -445,13 +450,17 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     }
 
     public static void parseAndRunLine(String inputLine) {
+        System.out.println("entered parseAndRunLine");
         CharStream input = CharStreams.fromString(inputLine);
+
+
         GoobScraperLexer lexer = new GoobScraperLexer(input);
         CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
         GoobScraperParser parser = new GoobScraperParser(commonTokenStream);
-        ParseTree tree = parser.program();
+        ParseTree tree = parser.program();  // The error: "line 1:25 token recognition error at: '.'" has been traced to here
         TestGoobScraperVisitor testGoobScraperVisitor = new TestGoobScraperVisitor();
         testGoobScraperVisitor.visit(tree);
+
     }
 
 }

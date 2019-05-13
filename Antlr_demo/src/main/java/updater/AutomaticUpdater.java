@@ -82,7 +82,7 @@ public class AutomaticUpdater {
                     } else if (text.startsWith("alert:")) {
                         alert = getAlert(text.substring(6));
                     } else if (text.startsWith("hash:")){
-                        hash = getHash(text.substring(5));
+                        hash = getHash(text);
                     }
                 }
                 if (time == null || strTimeType == null || timeType == null || updateType == null) continue;
@@ -95,9 +95,9 @@ public class AutomaticUpdater {
         }
     }
 
-    private static long getHash(String hashString) {
+    static long getHash(String hashString) {
         try {
-            return Long.valueOf(hashString);
+            return Long.valueOf(hashString.substring(6).replace("\"", "").trim());
         } catch (Exception e) {
             e.printStackTrace();
             return 0L;

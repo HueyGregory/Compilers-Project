@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static updater.AutomaticUpdater.getHash;
+
 public class FileUpdateInformation implements Runnable {
 
     @Override
@@ -45,8 +47,10 @@ public class FileUpdateInformation implements Runnable {
         try {
             String text;
             BufferedReader br = new BufferedReader(new FileReader(mdFile));
-            while ((text = br.readLine()) != null && !(text.equals("hash:"))) {
-                return Long.valueOf(text.substring(5));
+            while ((text = br.readLine()) != null){
+                if (text.startsWith("hash:")) {
+                    return getHash(text);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
