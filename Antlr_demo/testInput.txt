@@ -1,6 +1,6 @@
-/get url "https://www.w3schools.com/html/html_tables.asp";
+/get url "https://helpful-helium.glitch.me/";
 /get table 0;
-/extract new 0 "testTable.csv";
-/update append 23sec;
+/extract new 0 "shevatimTable.csv";
+/update new 10sec;
 /alert;
 /quit;

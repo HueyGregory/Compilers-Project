@@ -105,9 +105,7 @@ public class AutomaticUpdater {
     }
 
     private static boolean getAlert(String alert) {
-        if (alert.equals("true") || alert.equals("yes"))
-            return true;
-        return false;
+        return alert.contains("true") || alert.contains("yes");
     }
 
     private static void addFileToExecutor(File file, Long time, TimeUnit timeType, String updateType, boolean alert, long hash, ScheduledExecutorService es) {

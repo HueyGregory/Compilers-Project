@@ -300,7 +300,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
 
 
             if (var != null) {
-                var.addStep("/extract new " + file.replace("\"",""));
+                var.addStep("/extract new \"" + file.replace("\"","") + "\"");
                 insertVarMetaDataFile(varMem.get(var.getName()), getFile(getMDFileName(file.replace("\"",""))));
                 var.setFileName(file);
             }
@@ -338,7 +338,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
             while ((text = br.readLine()) != null) {
                 if (!text.startsWith("alert")) strBuild.append(text).append("\n");
             }
-            strBuild.append("\n").append("alert").append("\n");
+            strBuild.append("\n").append("alert: true").append("\n");
             FileWriter writer = new FileWriter(mdFile,false);
             writer.write(strBuild.toString());
             writer.flush();

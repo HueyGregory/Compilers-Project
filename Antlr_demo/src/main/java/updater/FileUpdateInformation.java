@@ -17,7 +17,7 @@ public class FileUpdateInformation implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(this.mdFile);
+            System.out.println("[run] mdFile: " + this.mdFile);
 
             // extract steps from metadata file
             List<String> steps = extractSteps(this.mdFile);
@@ -35,8 +35,15 @@ public class FileUpdateInformation implements Runnable {
                 if (!step.endsWith(";")) step += ";";
                 TestGoobScraperVisitor.parseAndRunLine(step);
             }
-            if (extractNewHash(this.mdFile) != hash) {
-                alertUser();
+            System.out.println("Just before alert");
+            if (alert) {
+                long newHash = extractNewHash(this.mdFile);
+                System.out.println("newHash: " + newHash);
+                System.out.println("old Hash: " + hash);
+                if (newHash != hash) {
+                    alertUser();
+                    hash = newHash;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
