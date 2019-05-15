@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
@@ -21,13 +22,36 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
 
     public ListenerTestGoobScraper() {  }
 
-    @Override public void enterGetURL(GoobScraperParser.GetURLContext ctx) {
-        System.out.println("In enterGetURL");
+    @Override
+    public void exitGetURL(GoobScraperParser.GetURLContext ctx) {
+        System.out.println("In exitGetURL");
         System.out.println(ctx.word().getText());
         URLConnection connection = null;
         try {
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("testGoober.js"), "utf-8"));
             String url = ctx.word().getText().replace("\"", "");
-            connection = new URL(url).openConnection();
+            String jsCode = "const getURL = function (url) {\n" +
+                    "    const request = require('request');\n" +
+                    "    url = url.replace(/['\";]+/g, '');\n" +
+                    "    console.log(url);\n" +
+                    "    request(url, (err, res, body) => {\n" +
+                    "        if (err) {\n" +
+                    "            return console.log(err);\n" +
+                    "        }\n" +
+                    "        console.log(body);\n" +
+                    "    });\n" +
+                    "};\n" +
+                    "getURL(" + "\"" + url + "\");";
+
+            String js2 = "    request(url, (err, res, body) => {\n" +
+                    "        if (err) {\n" +
+                    "            return console.log(err);\n" +
+                    "        }\n" +
+                    "        console.log(body);\n" +
+                    "    });\n";
+            writer.write(jsCode);
+            writer.close();
+            /*connection = new URL(url).openConnection();
             InputStream response = connection.getInputStream();
             Scanner scanner = new Scanner(response);
             String responseBody = scanner.useDelimiter("\\A").next();
@@ -36,25 +60,19 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
             varMem.put(lastVar.getName(), lastVar);
             lastVar.addStep("/get url " + ctx.word().getText());
             System.out.println("Visitor.Variable reference name: " + lastVar.getName());
+            */
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void enterGetTable(GoobScraperParser.GetTableContext ctx) {
-
-    }
-
-
-    @Override public void exitGetURL(GoobScraperParser.GetURLContext ctx) { System.out.println("In exitGetURL"); }
-
     public static void main(String[] args){
         while(true){
-            System.out.print("~$: ");
+            //System.out.print("~$: ");
             try {
                 Scanner sc = new Scanner(System.in);
-                String fileName = sc.next();
+                //String fileName = sc.next();
+                String fileName = "./src/main/java/Visitor/input.txt";
                 BufferedReader br = new BufferedReader(new FileReader(fileName));
                 String inputLine = br.readLine();
                 parseAndRunLine(inputLine);
