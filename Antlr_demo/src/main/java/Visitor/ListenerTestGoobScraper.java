@@ -113,11 +113,18 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
             pyLine = "    lister = memory[" + varNum + "]\n";
 
         }
+        String typeExtract = ctx.getChild(1).getText();
+        if(typeExtract.equals("append")){
+            typeExtract = "a";
+        }else{
+            typeExtract = "w";
+        }
+
         String code = "def extractStat():\n" +
                 "    import pandas as pd\n" +
                      pyLine +
                 "    my_df = pd.DataFrame(lister)\n" +
-                "    my_df.to_csv(" +  file + ", index=False, header=False)\n" +
+                "    my_df.to_csv(" +  file + ",mode='" + typeExtract + "' , index=False, header=False)\n" +
                 "extractStat()\n";
 
         try(FileWriter fw = new FileWriter("testGoober.py", true);
