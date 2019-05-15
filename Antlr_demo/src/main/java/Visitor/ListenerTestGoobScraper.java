@@ -44,7 +44,7 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
                 "    print(\"Variable reference name: \" + str(lastVar))\n" +
                 "    return response\n" +
                 "\n" +
-                "res = getURL(\""+ url + "\")";
+                "res = getURL(\""+ url + "\")\n";
 
         try(FileWriter fw = new FileWriter("testGoober.py", true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -56,26 +56,25 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
         }
     }
 
-    //ex. "/get table VAR" or "/get table";
+    //ex. "/get table 0; or "/get table";
     @Override
     public void exitGetTable(GoobScraperParser.GetTableContext ctx) {
         String pyLine = "";
         System.out.println("In exitGetTable");
-        int wordNum = ctx.children.size() - 2;
-        if(wordNum == 1){//extract new "asdf.csv";
-            pyLine = "    html = memory[lastVar]\n";
+        int wordNum = ctx.children.size() - 1;
+        if(wordNum == 1){
+            pyLine = "html = memory[lastVar]\n";
 
-        }else if(wordNum == 2){//extract new 0 "asdf.csv";
+        }else if(wordNum == 2){
             String varNum = ctx.getChild(2).getText();//get from memory
-            pyLine = "    html = memory[" + varNum + "]\n";
+            pyLine = "html = memory[" + varNum + "]\n";
 
         }
         String code =
                     "def getTable():\n" +
                     "    try:\n" +
                     "        data = []\n" +
-                    "        var= lastVar\n" +
-                             pyLine +
+                    "        " + pyLine +
                     "        soup = BeautifulSoup(html,\"lxml\")\n" +
                     "        table = soup.find( \"table\")\n" +
                     "        rows = table.find_all('tr')\n" +
@@ -87,7 +86,7 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
                     "        memory[lastVar] = data\n" +
                     "    except ValueError:\n" +
                     "        \"No variable there\"\n" +
-                    "tables = getTable()";
+                    "tables = getTable()\n";
         try(FileWriter fw = new FileWriter("testGoober.py", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw)){
@@ -102,25 +101,24 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
     @Override
     public void exitExtractStatment(GoobScraperParser.ExtractStatmentContext ctx) {
         String file = "";
-        String pyStatment = "";
+        String pyLine = "";
         int wordNum = ctx.word().size();
         if(wordNum == 1){//extract new "asdf.csv";
             file = ctx.getChild(2).getText();
-            pyStatment = "    lister = memory[lastVar]\n";
+            pyLine = "    lister = memory[lastVar]\n";
 
         }else if(wordNum == 2){//extract new 0 "asdf.csv";
             String varNum = ctx.getChild(2).getText();//get from memory
             file = ctx.getChild(3).getText();
-            pyStatment = "    lister = memory[" + varNum + "]\n";
+            pyLine = "    lister = memory[" + varNum + "]\n";
 
         }
-        System.out.println();
         String code = "def extractStat():\n" +
                 "    import pandas as pd\n" +
-                     pyStatment +
+                     pyLine +
                 "    my_df = pd.DataFrame(lister)\n" +
-                "    my_df.to_csv(" + "\"" + file + "\"" + ", index=False, header=False)\n" +
-                "extractStat()";
+                "    my_df.to_csv(" +  file + ", index=False, header=False)\n" +
+                "extractStat()\n";
 
         try(FileWriter fw = new FileWriter("testGoober.py", true);
             BufferedWriter bw = new BufferedWriter(fw);
