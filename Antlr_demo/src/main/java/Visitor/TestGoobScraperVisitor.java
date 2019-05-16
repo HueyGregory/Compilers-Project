@@ -136,7 +136,6 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     //ex. "/get table VAR" or "/get table";
     @Override
     public String visitGetTable(GoobScraperParser.GetTableContext ctx){
-        //TODO: instead of printing write to csv file for each table
         String html;
         Variable var;
         if ((var = getVar(ctx.word())) == null) {

@@ -130,9 +130,6 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
                 "        " + pyLine2 + "\n" +
                 "        var.setText(data)\n" +
                 "        var.addStep(\"/get "+ removeLastChar(sba) + "\")#add java var here\n" +
-                "        md_file = open('filename_MD.txt', mode='a')\n" +
-                "        md_file.write(\"URL: \" + var.getURLName())\n" +
-                "        md_file.write(\"\\n\")\n" +
                 "    except ValueError:\n" +
                 "        \"No variable there\"\n" +
                 "tables = getTable()\n";
@@ -164,7 +161,9 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
         }
         StringBuilder sb = new StringBuilder();
         for(ParseTree child: ctx.children){
-            sb.append(child.getText() + " ");
+            if(!child.getText().equals(";")){
+                sb.append(child.getText() + " ");
+            }
         }
         String sba = sb.toString().replace("\"", "");
 
@@ -175,10 +174,13 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
                 "    my_df = pd.DataFrame(lister)\n" +
                 "    md_file = open('filename_MD.txt', mode='a')\n" +
                 "    ###function\n" +
-                "    md_file.write(\"" + sba + "\")\n" +
+                "    var.addStep(\"" + removeLastChar(sba) + "\")#add java var here\n" +
+                "    md_file.write(\"Steps:\\n\")\n" +
+                "    for step in var.getSteps():\n" +
+                "        md_file.write(step + \"\\n\")\n" +
+                "    md_file.write(\"End Steps\\n\")\n" +
                 "    md_file.write(\"\\n\")\n" +
-                "    var.addStep(\"" + sba + "\")#add java var here\n" +
-                "    my_df.to_csv('testTable.csv',mode='a', index=False, header=False)\n" +
+                "    my_df.to_csv('testTable.csv',mode='w', index=False, header=False)\n" +
                 "    print('Extract successful: ' + str(lastVar))\n" +
                 "extractStat()\n";
         writeToPy(code);
@@ -218,7 +220,7 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
         String code = "def updateStat():\n" +
                            pyLine +
                       "    md_file = open('filename_MD.txt', mode='a')\n" +
-                      "    md_file.write(\"update:" + updateType + ";" + updateTime + "\")\n" +
+                      "    md_file.write(\"update: " + updateType + ";" + updateTime + "\")\n" +
                       "    md_file.write(\"\\n\")\n" +
                       "    var.addStep(\"" + sba + "\")#add java var here\n" +
                       "updateStat()\n";
@@ -227,7 +229,7 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
 
     @Override
     public void exitAlertStatment(GoobScraperParser.AlertStatmentContext ctx) {
-        String alert = "ALERT: TRUE";
+        String alert = "alert: true";
         String code = "def alertStat():\n" +
                       "    md_file = open('filename_MD.txt', mode='a')\n" +
                       "    md_file.write(\"" + alert + "\")\n" +

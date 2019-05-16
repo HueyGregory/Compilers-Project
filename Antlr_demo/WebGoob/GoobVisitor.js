@@ -1,7 +1,7 @@
 const antlr4 = require('antlr4');
 const GoobScraperVisitor = require('./lib/GoobScraperVisitor').GoobScraperVisitor;
 /**constructor*/
-var GoobVisitor = function(){
+let GoobVisitor = function(){
     // inherit default visitor
     GoobScraperVisitor.call(this);
     return this;
@@ -14,7 +14,32 @@ GoobVisitor.prototype.constructor = GoobVisitor;
  /*Functions for each expression:*/
 GoobVisitor.prototype.visitGetURL = function(ctx) {
     //var value = this.visit(ctx.visitGetURL());
-    var url = ctx.word().getText().replace(/\"/g, "");
+    let url = ctx.word().getText().replace(/\"/g, "");
+    //var value = this.visit(ctx.word().getText());
+    console.log("Value is : " + url);
+    return url;
+};
+
+
+GoobVisitor.prototype.visitGetTable = function(ctx) {
+    //var value = this.visit(ctx.visitGetURL());
+    let url = ctx.word().getText().replace(/\"/g, "");
+    //var value = this.visit(ctx.word().getText());
+    console.log("Value is : " + url);
+    return url;
+};
+
+GoobVisitor.prototype.visitExtractStatment = function(ctx) {
+    //var value = this.visit(ctx.visitGetURL());
+    let url = ctx.word().getText().replace(/\"/g, "");
+    //var value = this.visit(ctx.word().getText());
+    console.log("Value is : " + url);
+    return url;
+};
+
+GoobVisitor.prototype.visitUpdateStatment = function(ctx) {
+    //var value = this.visit(ctx.visitGetURL());
+    let url = ctx.word().getText().replace(/\"/g, "");
     //var value = this.visit(ctx.word().getText());
     console.log("Value is : " + url);
     return url;
