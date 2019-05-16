@@ -12,6 +12,6 @@ const getURL = function (url) {
 };
 
 let b = getURL("http://helpful-helium.glitch.me");
+sleep(3000);
 //this will run first so 'b' will be undefined
 console.log(b);
-
