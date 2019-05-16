@@ -411,13 +411,17 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
 
     public static void main(String[] args){
         System.out.println("Begin");
-     //   readFromCMD();
-        File dir = new File(".");
-        File[] files = dir.listFiles();
-        for (File file : files) {
-            System.out.println(file.getName());
+        boolean cmd = false;
+        if (cmd)
+            readFromCMD();
+        else {
+            File dir = new File(".");
+            File[] files = dir.listFiles();
+            for (File file : files) {
+             //   System.out.println(file.getName());
+            }
+            readFromFile("testInput.txt");
         }
-        readFromFile("testInput.txt");
 
         System.out.println("Finished");
     }
@@ -450,7 +454,7 @@ public class TestGoobScraperVisitor extends GoobScraperBaseVisitor<String> {
     }
 
     public static void parseAndRunLine(String inputLine) {
-        System.out.println("entered parseAndRunLine");
+      //  System.out.println("entered parseAndRunLine");
         CharStream input = CharStreams.fromString(inputLine);
 
 
