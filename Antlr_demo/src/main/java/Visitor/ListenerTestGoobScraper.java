@@ -66,29 +66,30 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
                 "        self.steps.append(step)\n" +
                 "    def getText(self):\n" +
                 "        return self.text\n" +
-                "\n" +
                 "    def setText(self,text):\n" +
                 "        self.text = text\n" +
                 "        return self.text\n" +
-                "\n" +
+                "    def getURLName(self):\n" +
+                "        return self.url\n" +
                 "def getURL(url):\n" +
-                "    global lastVar\n\"" +
+                "    global lastVar\n" +
                 "    lastVar += 1\n" +
                 "    response = requests.get(url)\n" +
-                "    memory[lastVar] = response.text\n" +
+                "    var = Variable(url=url,text=response.text,number=lastVar)\n" +
+                "    memory[lastVar] = var\n" +
                 "    print(\"Variable reference name: \" + str(lastVar))\n" +
-                "    var.addStep(/get "+ sba  +")\n" +
+                "    var.addStep(\"/get " + removeLastChar(sba) + "\")\n" +
                 "    return response\n" +
                 "res = getURL(\""+ url + "\")\n";
 
-        try(FileWriter fw = new FileWriter("testGoober.py", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw)){
-            out.print(code);
-            //fw.close();
-        } catch (IOException e) {
-            //exception handling
-        }
+        writeToPy(code);
+
+    }
+    public String removeLastChar(String s) {
+        return Optional.ofNullable(s)
+                .filter(str -> str.length() != 0)
+                .map(str -> str.substring(0, str.length() - 1))
+                .orElse(s);
     }
 
     //ex. "/get table 0; or "/get table";
@@ -98,17 +99,23 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
         System.out.println("In exitGetTable");
         int wordNum = ctx.children.size() - 1;
         if(wordNum == 1){
-            pyLine = "html = memory[lastVar]\n";
-            pyLine2 = "var = memory[lastVar]\n";
+            pyLine = "html = memory[lastVar].getText()";
+            pyLine2 = "var = memory[lastVar]";
 
         }else if(wordNum == 2){
             String varNum = ctx.getChild(2).getText();//get from memory
-            pyLine = "html = memory[" + varNum + "]\n";
-            pyLine2 = "var = memory[" + varNum + "]\n";
+            pyLine = "html = memory[" + varNum + "].getText()";
+            pyLine2 = "var = memory[" + varNum + "]";
 
         }
+        StringBuilder sb = new StringBuilder();
+        for(ParseTree child: ctx.children){
+            sb.append(child.getText() + " ");
+        }
+        String sba = sb.toString().replace("\"", "");
+
         String code =
-                " def getTable():\n" +
+                "def getTable():\n" +
                 "    try:\n" +
                 "        data = []\n" +
                 "        " + pyLine + "\n" +
@@ -122,21 +129,15 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
                 "                data.append([ele for ele in cols if ele != []])  # Get rid of empty values\n" +
                 "        " + pyLine2 + "\n" +
                 "        var.setText(data)\n" +
-                "        var.addStep(\"\")#add java var here\n" +
-                "\n" +
+                "        var.addStep(\"/get "+ removeLastChar(sba) + "\")#add java var here\n" +
+                "        md_file = open('filename_MD.txt', mode='a')\n" +
+                "        md_file.write(\"URL: \" + var.getURLName())\n" +
+                "        md_file.write(\"\\n\")\n" +
                 "    except ValueError:\n" +
                 "        \"No variable there\"\n" +
-                "\n" +
-                "tables = getTable()";
+                "tables = getTable()\n";
 
-        try(FileWriter fw = new FileWriter("testGoober.py", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw)){
-            out.print(code);
-            //fw.close();
-        } catch (IOException e) {
-            //exception handling
-        }
+        writeToPy(code);
 
     }
 
@@ -147,12 +148,56 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
         int wordNum = ctx.word().size() -1;
         if(wordNum == 1){//extract new "asdf.csv";
             file = ctx.getChild(2).getText();
-            pyLine = "    lister = memory[lastVar]\n";
+            pyLine = "    var = memory[lastVar]\n";
 
         }else if(wordNum == 2){//extract new 0 "asdf.csv";
             String varNum = ctx.getChild(2).getText();//get from memory
             file = ctx.getChild(3).getText();
-            pyLine = "    lister = memory[" + varNum + "]\n";
+            pyLine = "    var = memory[" + varNum + "]\n";
+
+        }
+        String typeExtract = ctx.getChild(1).getText();
+        if(typeExtract.equals("append")){
+            typeExtract = "a";
+        }else{
+            typeExtract = "w";
+        }
+        StringBuilder sb = new StringBuilder();
+        for(ParseTree child: ctx.children){
+            sb.append(child.getText() + " ");
+        }
+        String sba = sb.toString().replace("\"", "");
+
+        String code = "def extractStat():\n" +
+                "    import pandas as pd\n" +
+                     pyLine +
+                "    lister = var.getText()\n" +
+                "    my_df = pd.DataFrame(lister)\n" +
+                "    md_file = open('filename_MD.txt', mode='a')\n" +
+                "    ###function\n" +
+                "    md_file.write(\"" + sba + "\")\n" +
+                "    md_file.write(\"\\n\")\n" +
+                "    var.addStep(\"" + sba + "\")#add java var here\n" +
+                "    my_df.to_csv('testTable.csv',mode='a', index=False, header=False)\n" +
+                "    print('Extract successful: ' + str(lastVar))\n" +
+                "extractStat()\n";
+        writeToPy(code);
+
+    }
+    // ex. /update append 23sec
+    @Override
+    public void exitUpdateStatment(GoobScraperParser.UpdateStatmentContext ctx) {
+        String pyLine = "";
+        String file = "";
+        int wordNum = ctx.children.size() - 3;
+        if(wordNum == 1){//updatet new "asdf.csv";
+            file = ctx.getChild(2).getText();
+            pyLine = "    var = memory[lastVar]\n";
+
+        }else if(wordNum == 2){//update new 0 "asdf.csv";
+            String varNum = ctx.getChild(2).getText();//get from memory
+            file = ctx.getChild(3).getText();
+            pyLine = "    var = memory[" + varNum + "]\n";
 
         }
         String typeExtract = ctx.getChild(1).getText();
@@ -162,15 +207,48 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
             typeExtract = "w";
         }
 
-        String code = "def extractStat():\n" +
-                "    import pandas as pd\n" +
-                     pyLine +
-                "    my_df = pd.DataFrame(lister)\n" +
-                "    my_df.to_csv(" +  file + ",mode='" + typeExtract + "' , index=False, header=False)\n" +
-                "    print('Extract successful: ' + lastVar)\n" +
-                "extractStat()\n";
 
+        StringBuilder sb = new StringBuilder();
+        for(ParseTree child: ctx.children){
+            sb.append(child.getText() + " ");
+        }
+        String sba = sb.toString().replace("\"", "");
+        String updateType = ctx.getChild(1).getText();
+        String updateTime = ctx.getChild(2).getText();
+        String code = "def updateStat():\n" +
+                           pyLine +
+                      "    md_file = open('filename_MD.txt', mode='a')\n" +
+                      "    md_file.write(\"update:" + updateType + ";" + updateTime + "\")\n" +
+                      "    md_file.write(\"\\n\")\n" +
+                      "    var.addStep(\"" + sba + "\")#add java var here\n" +
+                      "updateStat()\n";
+        writeToPy(code);
+    }
 
+    @Override
+    public void exitAlertStatment(GoobScraperParser.AlertStatmentContext ctx) {
+        String alert = "ALERT: TRUE";
+        String code = "def alertStat():\n" +
+                      "    md_file = open('filename_MD.txt', mode='a')\n" +
+                      "    md_file.write(\"" + alert + "\")\n" +
+                      "    md_file.write(\"\\n\")\n" +
+                      "alertStat()\n";
+        writeToPy(code);
+
+    }
+
+    @Override
+    public void exitQuitStatment(GoobScraperParser.QuitStatmentContext ctx) {
+        String code = "import sys\n" +
+                      "def quitStat():\n" +
+                      "    print(\"quitting\")\n" +
+                      "    sys.exit(0)\n" +
+                      "quitStat()";
+        writeToPy(code);
+
+    }
+
+    private void writeToPy(String code){
         try(FileWriter fw = new FileWriter("testGoober.py", true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw)){
@@ -179,8 +257,8 @@ public class ListenerTestGoobScraper extends GoobScraperBaseListener {
         } catch (IOException e) {
             //exception handling
         }
-
     }
+
 
     public static void main(String[] args) throws IOException {
         String fileName = "./src/main/java/Visitor/input.txt";
