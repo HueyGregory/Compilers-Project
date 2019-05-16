@@ -2,5 +2,5 @@
 /get table 0;
 /extract append 0 "testTable.csv";
 /update append 23sec;
-/quit;
 /alert;
+/quit;
